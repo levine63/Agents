@@ -1,0 +1,76 @@
+version: 0.1.0
+last_updated: 2026-05-06
+purpose: >
+  Deterministic checks that should run before LLM review when feasible.
+
+global_rules:
+  - id: header_present
+    severity: error
+    genres: [software_code, stats_code, writing, interviews]
+    description: Required header or metadata block is present
+  - id: not_yet_done_present
+    severity: warning
+    genres: [software_code, stats_code, writing, interviews, llm_agent_work]
+    description: Status or Not Yet Done field is present
+  - id: personal_path_scan
+    severity: warning
+    genres: [software_code, stats_code]
+    description: Detect likely hard-coded personal paths such as C:\Users\...
+
+python_rules:
+  - id: module_docstring_present
+    severity: warning
+    description: Module docstring exists for script-like or reusable files
+  - id: bare_except_absent
+    severity: error
+    description: No bare except that silently continues
+  - id: randomness_seeded
+    severity: error
+    trigger_patterns:
+      - "random."
+      - "np.random"
+      - "numpy.random"
+      - "train_test_split"
+      - "shuffle"
+      - "bootstrap"
+    required_patterns:
+      - "random.seed("
+      - "np.random.seed("
+      - "default_rng("
+
+stata_rules:
+  - id: stata_version_present
+    severity: error
+    description: version command appears near the top
+  - id: set_more_off_present
+    severity: warning
+    description: set more off appears for batch runs
+  - id: stata_randomness_seeded
+    severity: error
+    trigger_patterns:
+      - "bootstrap"
+      - "simulate"
+      - "bsample"
+      - "sample"
+      - "runiform("
+    required_patterns:
+      - "set seed"
+
+writing_rules:
+  - id: placeholder_text_scan
+    severity: error
+    description: Detect placeholders such as TBD, XX, or insert citation here
+  - id: cite_placeholder_scan
+    severity: warning
+    description: Detect unfinished citation markers
+
+interview_rules:
+  - id: consent_field_present
+    severity: error
+    description: Consent field is present
+  - id: storage_location_present
+    severity: warning
+    description: Storage location field is present
+  - id: quote_marker_present
+    severity: warning
+    description: Quote section or equivalent marker is present
