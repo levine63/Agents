@@ -126,6 +126,10 @@ It:
 - runs `lint_mvp.py` only on the changed targets
 - uploads JSON and Markdown reports as workflow artifacts
 
+## GitHub Workflow Notes
+
+If you want a very short reminder of the branch and PR workflow, see [PULL_REQUEST_CHEAT_SHEET.md](./PULL_REQUEST_CHEAT_SHEET.md).
+
 ## Initial Scope
 
 This version focuses on:

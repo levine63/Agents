@@ -8,3 +8,4 @@
 - Added starter templates and a deterministic lint policy stub.
 - Added `scripts/lint_mvp.py` with first-pass deterministic checks for Python, Stata, and markdown writing artifacts.
 - Added `scripts/list_lint_targets.py` and a GitHub Actions workflow that runs the MVP linter on changed files only.
+- Added `PULL_REQUEST_CHEAT_SHEET.md` and linked it from the project README.
