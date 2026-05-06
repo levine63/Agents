@@ -49,7 +49,7 @@ SECRET_PATTERNS = (
     re.compile(r"BEGIN OPENSSH PRIVATE KEY", re.IGNORECASE),
 )
 QUICK_START_PATH_PATTERN = re.compile(
-    r"\b((?:examples|src|tests|data|outputs|scripts|docs|prompts)/[A-Za-z0-9._/\-]+)"
+    r"((?:\./)?(?:[A-Za-z0-9._\-]+/)*(?:examples|src|tests|data|outputs|scripts|docs|prompts)/[A-Za-z0-9._/\-]+)"
 )
 
 

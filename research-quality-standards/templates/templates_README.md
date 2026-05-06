@@ -26,6 +26,8 @@ These templates are meant to make compliance easier, not to force identical writ
   General report or memo template with audience, evidence, methods, limitations, and next steps.
 - `project_readme_template.md`
   Project README template with quick start, dependencies, inputs, outputs, reproducibility, tests, and `Not Included`.
+- `project_readme_meta_repo_template.md`
+  README template for top-level collection or meta repositories whose main job is to organize subprojects rather than expose one standalone runtime.
 - `project_readme_llm_pipeline_template.md`
   README template for mixed or LLM pipelines with model settings, evaluation, failure modes, and cost or timing notes.
 - `project_readme_replication_template.md`

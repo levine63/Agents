@@ -45,6 +45,8 @@ Each README should identify the closest project genre:
 
 If the project mixes several genres, state the dominant one and name the secondary ones in the summary or scope section.
 
+`Custom` is appropriate when the repository is primarily a collection, index, standards hub, or meta repository rather than a single runnable application or pipeline. In that case, the README should say so explicitly and should still provide one meaningful quick-start command, often by validating or demonstrating the primary contained project.
+
 ## Required Sections
 
 Every project README should contain, at minimum:

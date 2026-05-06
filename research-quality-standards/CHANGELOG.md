@@ -11,3 +11,4 @@
 - Added a dedicated `README` standards layer, reviewer instruction, maker prompt, and project README template.
 - Strengthened README standards with clearer genre guidance, static-review limits, and tested-environment expectations.
 - Added a warning-first static README checker, markdownlint config, README quality workflow, and README templates for replication and LLM pipeline projects.
+- Added a meta-repository README template and clarified how `custom` genre READMEs should behave.

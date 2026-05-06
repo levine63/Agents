@@ -114,6 +114,56 @@ class CheckReadmeTests(WorkspaceTempDirTestCase):
         finally:
             self.remove_workspace_temp_dir(root)
 
+    def test_quick_start_prefixed_subproject_path_is_recognized(self) -> None:
+        root = self.make_workspace_temp_dir()
+        try:
+            nested = root / "research-quality-standards" / "scripts"
+            nested.mkdir(parents=True)
+            (nested / "check_readme.py").write_text("print('ok')\n", encoding="utf-8")
+            target = root / "README.md"
+            target.write_text(
+                "# Demo\n\n"
+                "## Genre\n\n"
+                "custom\n\n"
+                "## Summary\n\n"
+                "Meta repo.\n\n"
+                "## Quick Start\n\n"
+                "```bash\npython ./research-quality-standards/scripts/check_readme.py ./README.md\n```\n\n"
+                "**Expected output**\n\n"
+                "```text\nok\n```\n\n"
+                "## Environment\n\n"
+                "Python 3.11.\n\n"
+                "## Data and Inputs\n\n"
+                "Top-level docs.\n\n"
+                "## Outputs\n\n"
+                "Console output.\n\n"
+                "## Reproducibility\n\n"
+                "Deterministic.\n\n"
+                "## Tests and Validation\n\n"
+                "Smoke check only.\n\n"
+                "## Limitations and Risks\n\n"
+                "Thin wrapper.\n\n"
+                "## Common Issues\n\n"
+                "**Error:** one\n**Context:** test\n**Fix:** retry\n\n"
+                "**Error:** two\n**Context:** test\n**Fix:** retry\n\n"
+                "## File Structure\n\n"
+                "See repo tree.\n\n"
+                "## Contributing\n\n"
+                "Use PRs.\n\n"
+                "## License\n\n"
+                "Internal.\n\n"
+                "## Contact\n\n"
+                "Owner.\n",
+                encoding="utf-8",
+            )
+
+            findings = check_readme.find_issues(target)
+            messages = "\n".join(item.message for item in findings)
+
+            self.assertNotIn("Quick Start references a missing path", messages)
+        finally:
+            self.remove_workspace_temp_dir(root)
+
 
 if __name__ == "__main__":
     unittest.main()
