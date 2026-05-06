@@ -59,6 +59,12 @@ Then open a PR on GitHub from `improve-standards` into `main`.
 - use clear branch names such as `improve-standards`, `add-lint-rule`, or `fix-template-header`
 - use clear PR titles such as `Add MVP lint workflow` or `Tighten verification standards`
 
+## Same Branch Or New Branch
+
+Stay on the same branch if the new work belongs under the same PR title and should be reviewed together.
+
+Start a new branch if the new work solves a different problem, could be merged independently, or would need a different PR title.
+
 ## Mental Model
 
 - branch = workspace
