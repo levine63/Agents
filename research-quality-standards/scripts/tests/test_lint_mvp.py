@@ -1,7 +1,7 @@
 import shutil
-import tempfile
 import unittest
 from pathlib import Path
+from uuid import uuid4
 
 from scripts import lint_mvp
 from scripts import list_lint_targets
@@ -13,7 +13,9 @@ WORKSPACE_TMP_ROOT = Path(__file__).resolve().parents[2] / ".tmp_tests"
 class WorkspaceTempDirTestCase(unittest.TestCase):
     def make_workspace_temp_dir(self) -> Path:
         WORKSPACE_TMP_ROOT.mkdir(parents=True, exist_ok=True)
-        return Path(tempfile.mkdtemp(dir=WORKSPACE_TMP_ROOT))
+        path = WORKSPACE_TMP_ROOT / uuid4().hex
+        path.mkdir(parents=True, exist_ok=False)
+        return path
 
     def remove_workspace_temp_dir(self, path: Path) -> None:
         shutil.rmtree(path, ignore_errors=True)

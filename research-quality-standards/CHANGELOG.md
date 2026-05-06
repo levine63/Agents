@@ -8,4 +8,6 @@
 - Added starter templates and a deterministic lint policy stub.
 - Added `scripts/lint_mvp.py` with first-pass deterministic checks for Python, Stata, and markdown writing artifacts.
 - Added `scripts/list_lint_targets.py` and a GitHub Actions workflow that runs the MVP linter on changed files only.
-- Added `PULL_REQUEST_CHEAT_SHEET.md` and linked it from the project README.
+- Added a dedicated `README` standards layer, reviewer instruction, maker prompt, and project README template.
+- Strengthened README standards with clearer genre guidance, static-review limits, and tested-environment expectations.
+- Added a warning-first static README checker, markdownlint config, README quality workflow, and README templates for replication and LLM pipeline projects.

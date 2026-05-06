@@ -7,6 +7,7 @@ Use this classifier before review. If multiple genres apply, choose `mixed` and 
 
 ## Allowed Genres
 
+- `readme`
 - `software_code`
 - `stats_code`
 - `statistical_results`
@@ -17,6 +18,7 @@ Use this classifier before review. If multiple genres apply, choose `mixed` and 
 
 ## Decision Rules
 
+- Use `readme` for project onboarding documents whose main job is to explain setup, execution, dependencies, inputs, outputs, and workflow.
 - Use `software_code` for general scripts, utilities, application logic, and automation code.
 - Use `stats_code` for code that cleans data, constructs variables, estimates models, or generates statistical outputs.
 - Use `statistical_results` for reader-facing tables, regression outputs, simulation results, and empirical summaries.

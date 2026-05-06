@@ -24,6 +24,12 @@ These templates are meant to make compliance easier, not to force identical writ
   Starter Stata do-file with provenance header, `version`, `set more off`, path centralization, and merge/filter logging reminders.
 - `report_skeleton.md`
   General report or memo template with audience, evidence, methods, limitations, and next steps.
+- `project_readme_template.md`
+  Project README template with quick start, dependencies, inputs, outputs, reproducibility, tests, and `Not Included`.
+- `project_readme_llm_pipeline_template.md`
+  README template for mixed or LLM pipelines with model settings, evaluation, failure modes, and cost or timing notes.
+- `project_readme_replication_template.md`
+  README template for replication repos with data access, reproduction steps, expected checks, and artifact registry notes.
 - `manuscript_draft_template.md`
   Manuscript-oriented draft template with abstract, methods, limitations, references, and consistency checklist.
 - `interview_notes_template.md`
