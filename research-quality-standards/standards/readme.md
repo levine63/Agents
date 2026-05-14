@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/project_readme_template.md`
+Related templates: `templates/README/project_readme_template.md`
 Related examples: `examples/README.md`
 Lint opportunities: required section presence, placeholder text, broken relative paths, `.env.example` references, missing quick start
 
@@ -380,3 +380,4 @@ Treat the following as especially serious:
 - real secrets or unsafe instructions
 - README text that contradicts actual repo structure or workflow
 - failure to disclose large missing pieces under `Not Included`
+

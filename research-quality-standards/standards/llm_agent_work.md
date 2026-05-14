@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/report_skeleton.md`
+Related templates: `templates/papers/report_skeleton.md`
 Related examples: `examples/README.md`
 Lint opportunities: model/version field, prompt field, raw markdown in Word-targeted output, emoji scan, citation placeholder scan
 
@@ -73,3 +73,4 @@ Word and Google Drive outputs should:
 - use consistent headings
 
 Formatting mismatch is usually a `WARNING`, but raw markdown left in a Word or Drive artifact is an `ERROR`.
+

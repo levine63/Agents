@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/statistical_results_template.md`
+Related templates: `templates/statistical_results/statistical_results_template.md`
 Related examples: `examples/README.md`
 Lint opportunities: units markers, N/mean/spread presence, missingness fields, inconsistent numbers across linked files
 
@@ -68,3 +68,4 @@ Cryptic labels in reader-facing output are a `WARNING` at `DRAFT` and `SUBMISSIO
 Numbers cited in text should match the underlying tables and figures.
 
 Inconsistency between text and tables is an `ERROR` at all stages beyond `EXPLORATORY`.
+

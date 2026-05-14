@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/python_header.py`, `templates/stata_header.do`
+Related templates: `templates/code/python_stats/template.py`, `templates/code/stata/template.do`
 Related examples: `examples/README.md`
 Lint opportunities: seed, data source note, N-logging markers, merge checks, stochastic command detection
 
@@ -85,3 +85,5 @@ If the code produces summary statistics or model outputs:
 - output directories should be created programmatically or clearly documented
 
 Cryptic variable names with no mapping are a `WARNING` at `DRAFT` and `SUBMISSION`.
+
+

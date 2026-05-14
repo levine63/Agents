@@ -15,6 +15,8 @@ Not Yet Done:
 
 Target journal or audience:
 Article type or section type:
+Data/code availability status:
+Appendix status:
 
 ## Abstract
 
@@ -25,6 +27,7 @@ Article type or section type:
 - problem or question
 - why it matters
 - contribution
+- first paragraph should make the purpose or contribution clear
 
 ## Background Or Context
 
@@ -38,6 +41,12 @@ Article type or section type:
 
 [State findings or claims, tied to evidence.]
 
+Paragraph reminder:
+
+- use a clear topic sentence when helpful
+- keep one main idea per paragraph where possible
+- avoid vague nouns when a more precise term is available
+
 ## Limitations
 
 [State what remains uncertain, incomplete, or fragile.]
@@ -45,6 +54,14 @@ Article type or section type:
 ## Conclusion
 
 [Summarize the takeaway and practical implication.]
+
+## Data And Code Availability
+
+[State where data and code are available, under what restrictions, or whether this statement is pending.]
+
+## Appendix Or Supplement
+
+[State whether appendix or supplementary material exists, what it contains, and where the main text should point readers to it.]
 
 ## References
 
@@ -56,3 +73,7 @@ Article type or section type:
 - [ ] Every figure is referenced in the text
 - [ ] Numbers in abstract match body
 - [ ] Numbers in body match tables and figures
+- [ ] Contribution is explicit early in the manuscript
+- [ ] Citations in text have matching reference entries
+- [ ] Data/code availability statement included or intentionally marked pending
+- [ ] Appendix or supplement is referenced where relevant

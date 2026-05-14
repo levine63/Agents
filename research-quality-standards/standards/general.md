@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/report_skeleton.md`
+Related templates: `templates/papers/report_skeleton.md`
 Related examples: `examples/README.md`
 Lint opportunities: header presence, date format, `Not Yet Done` section, hard-coded personal paths
 
@@ -111,3 +111,4 @@ If the same defect recurs often, do not solve it only by adding more prompt text
 - improving a template
 - adding a deterministic lint rule
 - adding a positive example
+

@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/interview_notes_template.md`
+Related templates: `templates/interviews/interview_notes_template.md`
 Related examples: `examples/README.md`
 Lint opportunities: metadata fields, consent field, quote markers, anonymization marker, storage-location field
 
@@ -73,3 +73,4 @@ The artifact should state:
 - how anonymization was performed when applicable
 
 Missing anonymization procedure when anonymization is used is an `ERROR`.
+

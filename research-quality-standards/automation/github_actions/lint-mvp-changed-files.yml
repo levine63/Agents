@@ -1,0 +1,90 @@
+name: lint-mvp-changed-files
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: Base ref or SHA to diff against
+        required: true
+        type: string
+
+jobs:
+  lint-changed-files:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve diff range
+        id: diff
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "base=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "base=${{ inputs.base_ref }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Collect changed lint targets
+        id: targets
+        shell: bash
+        run: |
+          python ./scripts/list_lint_targets.py \
+            --base "${{ steps.diff.outputs.base }}" \
+            --head "${{ steps.diff.outputs.head }}" \
+            --repo-root "." > changed_targets.txt
+
+          count=$(grep -cve '^\s*$' changed_targets.txt || true)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "targets<<EOF"
+            cat changed_targets.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Show changed targets
+        run: |
+          echo "Changed lint targets:"
+          cat changed_targets.txt
+
+      - name: Run MVP linter on changed files
+        if: steps.targets.outputs.count != '0'
+        run: |
+          python ./scripts/lint_mvp.py \
+            ${{ steps.targets.outputs.targets }} \
+            --json-out ./generated/lint/github_action_lint.json \
+            --md-out ./generated/lint/github_action_lint.md
+
+      - name: No lintable file changes
+        if: steps.targets.outputs.count == '0'
+        run: |
+          echo "No supported changed files detected. Skipping lint."
+
+      - name: Upload lint reports
+        if: steps.targets.outputs.count != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-mvp-report
+          path: generated/lint/

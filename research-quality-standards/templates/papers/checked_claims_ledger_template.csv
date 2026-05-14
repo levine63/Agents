@@ -1,0 +1,2 @@
+claim_id,claim_excerpt,citation_pair,audit_mode,audit_status,audit_date,notes
+example_001,"Treatment increased uptake relative to control","Levine et al. (2026)","semantic","supports_claim","YYYY-MM-DD","Replace with actual claim excerpt and citation pair."

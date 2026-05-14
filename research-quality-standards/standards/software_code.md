@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/python_header.py`, `templates/stata_header.do`
+Related templates: `templates/code/python_general/template.py`, `templates/code/stata/template.do`
 Related examples: `examples/README.md`
 Lint opportunities: header, purpose, docstring presence, hard-coded personal paths, bare `except`, main guard, `version`
 
@@ -84,3 +84,5 @@ Randomness without a documented seed is:
 - globals should be minimized and justified
 
 Missing `version` in a substantive Stata script is an `ERROR` at `DRAFT` and `SUBMISSION`.
+
+

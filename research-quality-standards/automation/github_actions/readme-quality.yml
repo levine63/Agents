@@ -1,0 +1,39 @@
+name: readme-quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  readme-quality:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install markdownlint-cli2
+        run: npm install -g markdownlint-cli2
+
+      - name: Run markdownlint on top-level README
+        run: markdownlint-cli2 README.md --config .markdownlint.json || true
+
+      - name: Run warning-first README standards checker
+        run: python ./scripts/check_readme.py README.md || true
+
+      # To make this strict later, replace the previous step with:
+      # run: python ./scripts/check_readme.py README.md --strict
+

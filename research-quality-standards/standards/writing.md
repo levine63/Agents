@@ -3,7 +3,7 @@
 Version: 0.1.0
 Status: Draft
 Last updated: 2026-05-06
-Related templates: `templates/report_skeleton.md`
+Related templates: `templates/papers/report_skeleton.md`
 Related examples: `examples/README.md`
 Lint opportunities: placeholder text, acronym expansion markers, section references, citation placeholders
 
@@ -52,3 +52,4 @@ At `SUBMISSION`, tables and figures should be referenced in the text.
 - avoid placeholder text in late-stage drafts
 
 Placeholder text such as `TBD`, `XX`, or `insert here` is an `ERROR` at `SUBMISSION`.
+
