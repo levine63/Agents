@@ -1,22 +1,24 @@
 # Interview Notes
 
-Interviewer:
-Interviewee or pseudonym:
-Role:
-Connection source:
-Date:
-Start time:
-End time:
-Language:
-Format:
-Recording status:
-Consent:
-Storage location:
-Anonymization used:
-Anonymization procedure:
-Intent:
-Assumptions:
-Not Yet Done:
+## Interview Metadata
+
+- Interviewer:
+- Interviewee or pseudonym:
+- Role:
+- Connection source:
+- Date:
+- Start time:
+- End time:
+- Language:
+- Format:
+- Recording status:
+- Consent:
+- Storage location:
+- Anonymization used:
+- Anonymization procedure:
+- Intent:
+- Assumptions:
+- Not Yet Done:
 
 ## Topic Areas Covered
 

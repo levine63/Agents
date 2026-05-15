@@ -36,6 +36,7 @@ If a standard wants to point to a template, use a normal relative Markdown link 
 | `needs_human_template` | `templates/operations/needs_human_template.md` | `operations` | integrated |
 | `deferred_suggestions_template` | `templates/planning/deferred_suggestions_template.md` | `planning` | integrated |
 | `plan_template` | `templates/planning/plan_template.md` | `planning` | integrated |
+| `reviewer_feedback_synthesis_template` | `templates/planning/reviewer_feedback_synthesis_template.md` | `planning` | integrated |
 | `weekly_goal_template` | `templates/weekly_reports/weekly_goal_template.md` | `work_product_reviews` | integrated |
 | `weekly_report_template` | `templates/weekly_reports/weekly_report_template.md` | `work_product_reviews` | integrated |
 | `weekly_goal_training_memo` | `templates/weekly_reports/weekly_goal_training_memo.md` | `work_product_reviews` | integrated |
