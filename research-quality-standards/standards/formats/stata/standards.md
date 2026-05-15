@@ -18,6 +18,49 @@ All `software_code.md` standards apply here, plus the additional requirements be
 
 The guiding principle is that another RA should be able to re-run the analysis from scratch and reproduce the reported outputs.
 
+## Script Setup And Header
+
+Standalone do-files should include a top-of-file header that states:
+
+- project
+- file path
+- author
+- created date
+- last updated date
+- purpose
+- inputs
+- outputs
+- assumptions
+- setup or required packages
+- usage
+- notes or limitations
+
+The script should also declare:
+
+- `version` near the top
+- `clear all`
+- `set more off`
+
+Missing `version` is a `WARNING` at `DRAFT` and `SUBMISSION`.
+
+## Paths And Folder Discipline
+
+Use project-relative local macros for paths.
+
+Preferred pattern:
+
+- `local project_root "."`
+- `local raw_data "..."`
+- `local clean_data "..."`
+- `local output_dir "..."`
+
+Hard-coded local machine paths are a `WARNING` at `DRAFT` and an `ERROR` at `SUBMISSION` unless clearly justified.
+
+`data/raw/` should be treated as read-only.
+Derived files should be written to locations such as `data/clean/` or `outputs/`.
+
+If output folders may not exist, create them programmatically or document the requirement clearly.
+
 ## Data Provenance
 
 At `DRAFT` and `SUBMISSION`, the script or an accompanying note should state:
@@ -71,6 +114,14 @@ If intentionally variable randomness is required, explain why.
 
 Missing seed is an `ERROR` at `DRAFT` and `SUBMISSION`.
 
+If no stochastic component is used, a commented seed reminder near the top of the file is still good practice in templates.
+
+## Linting And Style Checks
+
+If `repkit` or another Stata lint workflow is available for the project, run it before submission.
+
+Lint-clean code is useful but not sufficient. It does not prove that the data construction or statistical logic is correct.
+
 ## Analytic Transparency
 
 The code or an accompanying note should explain:
@@ -93,4 +144,15 @@ If the code produces summary statistics or model outputs:
 - output directories should be created programmatically or clearly documented
 
 Cryptic variable names with no mapping are a `WARNING` at `DRAFT` and `SUBMISSION`.
+
+## Common Review Checks
+
+Reviewers should pay special attention to:
+
+- missing or undocumented user-written packages
+- path macros versus hard-coded local paths
+- missing merge diagnostics after `merge`
+- missing N logging after filters, merges, or deduplication
+- raw-data overwrites
+- stochastic commands without a seed
 
