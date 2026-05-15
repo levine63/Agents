@@ -11,6 +11,7 @@
  * - Native Google Sheets
  * - Word .docx converted to Google Docs through the Advanced Drive service
  * - Excel .xlsx converted to Google Sheets through the Advanced Drive service
+ * - PDF files sent directly to the OpenAI Responses API as file input
  *
  * Required Script Properties:
  * - SUBMISSIONS_FOLDER_ID
@@ -51,6 +52,7 @@ var GOOGLE_DOC_MIME_ = "application/vnd.google-apps.document";
 var GOOGLE_SHEET_MIME_ = "application/vnd.google-apps.spreadsheet";
 var DOCX_MIME_ = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 var XLSX_MIME_ = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+var PDF_MIME_ = "application/pdf";
 var OPENAI_RESPONSES_URL_ = "https://api.openai.com/v1/responses";
 
 var MAX_DOC_REVIEW_CHARS_ = 26000;
@@ -182,7 +184,9 @@ function reviewSubmission_(file, sourceFolder, genre, reviewDoc, config, convert
   var reviewSource = null;
   try {
     reviewSource = prepareReviewSource_(file, formatInfo, convertedSourceFolder, config.keepConvertedSources);
-    var extracted = extractArtifactText_(reviewSource);
+    var extracted = reviewSource.extractionKind === "pdf_file"
+      ? { content: "", notice: "PDF reviewed directly as a file input." }
+      : extractArtifactText_(reviewSource);
     var reviewText = callOpenAiReview_(file, genre, reviewSource, extracted, config);
     writeCompletedReview_(reviewDoc, file, sourceFolder, genre, reviewSource, extracted.notice, reviewText);
     cleanupConvertedSource_(reviewSource, config.keepConvertedSources);
@@ -249,11 +253,22 @@ function getFormatInfo_(mimeType) {
     };
   }
 
+  if (mimeType === MimeType.PDF || mimeType === PDF_MIME_) {
+    return {
+      supported: true,
+      formatKey: "pdf",
+      formatLabel: "PDF",
+      formatStandard: getFormatStandard_("pdf"),
+      extractionKind: "pdf_file",
+      requiresConversion: false
+    };
+  }
+
   return {
     supported: false,
     formatKey: "unknown",
     formatLabel: mimeType,
-    message: "This version supports native Google Docs, native Google Sheets, Word .docx, and Excel .xlsx only."
+    message: "This version supports native Google Docs, native Google Sheets, Word .docx, Excel .xlsx, and PDF files."
   };
 }
 
@@ -317,6 +332,13 @@ function extractArtifactText_(reviewSource) {
 
   if (reviewSource.extractionKind === "google_sheet") {
     return extractStructuredSpreadsheetText_(reviewSource.file.getId());
+  }
+
+  if (reviewSource.extractionKind === "pdf_file") {
+    return {
+      content: "",
+      notice: "PDF reviewed directly as a file input."
+    };
   }
 
   throw new Error("Unsupported extraction kind: " + reviewSource.extractionKind);
@@ -493,10 +515,11 @@ function buildSheetSummaryNotice_(summary) {
 }
 
 function callOpenAiReview_(file, genre, reviewSource, extracted, config) {
+  var input = buildReviewInput_(file, genre, reviewSource, extracted, config);
   var payload = {
     model: config.openAiModel,
     instructions: buildReviewerInstructions_(),
-    input: buildReviewInput_(file, genre, reviewSource, extracted, config),
+    input: input,
     reasoning: { effort: "low" }
   };
 
@@ -541,6 +564,10 @@ function buildReviewerInstructions_() {
 }
 
 function buildReviewInput_(file, genre, reviewSource, extracted, config) {
+  if (reviewSource.extractionKind === "pdf_file") {
+    return buildPdfReviewInput_(file, genre, reviewSource, extracted, config);
+  }
+
   var genreStandard = getGenreStandard_(genre, config);
   var formatStandard = getFormatStandard_(reviewSource.formatKey || deriveFormatKeyFromReviewSource_(reviewSource), config);
   var lines = [
@@ -565,6 +592,49 @@ function buildReviewInput_(file, genre, reviewSource, extracted, config) {
   }
 
   return lines.join("\n");
+}
+
+function buildPdfReviewInput_(file, genre, reviewSource, extracted, config) {
+  var genreStandard = getGenreStandard_(genre, config);
+  var formatStandard = getFormatStandard_(
+    reviewSource.formatKey || deriveFormatKeyFromReviewSource_(reviewSource),
+    config
+  );
+  var notes = compactNotes_(reviewSource.conversionNotice, extracted.notice);
+  var promptLines = [
+    "Artifact name: " + file.getName(),
+    "Genre: " + genre,
+    "Source format: " + reviewSource.sourceFormatLabel,
+    "Review working format: " + reviewSource.reviewFormatLabel,
+    "Artifact content is attached as a PDF file input. Review the full PDF rather than assuming a text-only export.",
+    "",
+    "Genre standard:",
+    genreStandard,
+    "",
+    "Format standard:",
+    formatStandard
+  ];
+
+  if (notes) {
+    promptLines.push("", "Content notice: " + notes);
+  }
+
+  return [
+    {
+      role: "user",
+      content: [
+        {
+          type: "input_file",
+          filename: file.getName(),
+          file_data: Utilities.base64Encode(reviewSource.file.getBlob().getBytes())
+        },
+        {
+          type: "input_text",
+          text: promptLines.join("\n")
+        }
+      ]
+    }
+  ];
 }
 
 function writeCompletedReview_(reviewDoc, file, sourceFolder, genre, reviewSource, notice, reviewText) {
@@ -899,7 +969,8 @@ function getFormatStandard_(formatKey, config) {
     google_doc: "standards/formats/docx/standards.md",
     google_sheet: "standards/formats/xlsx/standards.md",
     docx: "standards/formats/docx/standards.md",
-    xlsx: "standards/formats/xlsx/standards.md"
+    xlsx: "standards/formats/xlsx/standards.md",
+    pdf: "standards/formats/pdf/standards.md"
   };
   return fetchStandardWithFallback_(config, "format", formatKey, pathMap[formatKey] || "", fallback);
 }
@@ -925,6 +996,11 @@ function getFallbackFormatStandard_(formatKey) {
       "- Treat the workbook as a computational and data artifact.",
       "- Flag undocumented transformations, ambiguous tabs, hidden assumptions, broken logic, and mixed raw/output regions.",
       "- Focus on whether the workbook is auditable and safely reusable by someone other than the creator."
+    ].join("\n"),
+    pdf: [
+      "- Treat the PDF as a review artifact whose pagination, tables, figures, and layout may matter.",
+      "- Flag places where formatting, legibility, references, or embedded visuals create ambiguity or weaken reviewability.",
+      "- Do not assume the PDF is editable; focus on integrity, clarity, and whether the content can be reviewed accurately as submitted."
     ].join("\n")
   };
 
@@ -982,6 +1058,9 @@ function deriveFormatKeyFromReviewSource_(reviewSource) {
   }
   if (label.indexOf("doc") !== -1 || label.indexOf("word") !== -1) {
     return "docx";
+  }
+  if (label.indexOf("pdf") !== -1) {
+    return "pdf";
   }
   return "google_doc";
 }

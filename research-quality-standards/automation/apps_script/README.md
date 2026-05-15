@@ -2,6 +2,14 @@
 
 This folder contains the Google Apps Script source for the Drive submissions watcher.
 
+## Supported review paths
+
+- Native Google Docs
+- Native Google Sheets
+- Word `.docx` converted to Google Docs
+- Excel `.xlsx` converted to Google Sheets
+- PDF files sent directly to the OpenAI Responses API as file input
+
 ## Recommended workflow
 
 Use `clasp` so you can edit locally and push directly to Apps Script instead of pasting large code blocks into the web editor.
@@ -41,8 +49,15 @@ clasp push
 To open the script in the browser:
 
 ```powershell
-clasp open
+clasp open-script
 ```
+
+After pushing code changes, if you want to test immediately:
+
+1. Open the Apps Script project.
+2. Run `scanSubmissionFolders()` once manually.
+3. Approve any new permissions if prompted.
+4. Leave the time trigger enabled for normal background runs.
 
 ## Required Script Properties
 
@@ -76,3 +91,15 @@ Expected shape:
 - `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/standards/formats/...`
 
 If GitHub is unavailable, the script falls back to embedded standards text so reviews still complete.
+
+## Updating after a local patch
+
+From the repository root:
+
+```powershell
+Set-Location "C:\Users\levine\Dropbox\PC (2)\Documents\GitHub\Agents\research-quality-standards"
+clasp push
+clasp open-script
+```
+
+Then run `scanSubmissionFolders()` once in Apps Script if you want the new logic to take effect immediately instead of waiting for the next trigger run.
