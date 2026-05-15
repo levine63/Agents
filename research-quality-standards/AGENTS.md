@@ -38,7 +38,8 @@ For substantial tasks:
 5. Prefer deterministic checks before AI review.
 6. Make small, reversible changes.
 7. Run relevant tests, linters, and validators.
-8. Update documentation if behavior, assumptions, or workflows change.
+8. Update documentation if behavior, assumptions, workflows, or repository structure change.
+   This includes `README.md`, the relevant `INDEX.md` files, and moved-file cross-links.
 9. Summarize:
    - what changed
    - what was tested
@@ -75,11 +76,27 @@ Before generating or revising substantial artifacts:
 
 If standards conflict, genre standards win over format standards on semantic matters. If the conflict affects correctness, safety, privacy, or reproducibility, stop and report it.
 
+## Documentation Sync Rule
+
+When a task adds, removes, renames, or moves any reusable asset, update the navigation layer in the same change set.
+
+This includes:
+
+- `README.md`
+- the relevant `INDEX.md` files
+- counterpart links between standards and templates
+- path references in `AGENTS.md`, workflow docs, skills, reviewer prompts, and automation docs
+
+Before finishing a restructure or location change, search for stale paths and fix them.
+
+Do not leave repository navigation half-migrated.
+
 ## Capability registry
 
 Reusable assets are indexed in:
 
 - `standards/INDEX.md`
+- `templates/INDEX.md`
 - `skills/INDEX.md`
 
 Current active category:
@@ -178,9 +195,10 @@ Reusable workflows belong in:
 
 - `skills/`
 
-Reviewer prompts belong in:
+Reviewer prompts may live either:
 
-- `reviewer_prompts/`
+- beside the corresponding standard as `reviewer_prompt.md`
+- in `reviewer_prompts/` when intentionally shared across multiple standards or workflows
 
 When creating new reusable skills, plug-ins, workflows, reviewer prompts, or validators:
 
