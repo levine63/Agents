@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David I. Levine | Publications</title>
+  <style>
+    :root {
+      --bg: #f5efe2;
+      --surface: rgba(255, 252, 246, 0.92);
+      --surface-strong: #fffdf8;
+      --ink: #1f2c2a;
+      --muted: #586764;
+      --accent: #0f766e;
+      --accent-soft: #d8efe9;
+      --accent-warm: #c65d2e;
+      --border: rgba(31, 44, 42, 0.12);
+      --shadow: 0 18px 40px rgba(49, 52, 38, 0.12);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 26%),
+        radial-gradient(circle at 85% 10%, rgba(198, 93, 46, 0.14), transparent 20%),
+        linear-gradient(180deg, #fbf7ef 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      z-index: 20;
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .page {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 26px 0 72px;
+    }
+
+    .topbar,
+    .hero,
+    .section,
+    .pub-card,
+    .list-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: flex-end;
+      font-size: 0.97rem;
+    }
+
+    .hero,
+    .section {
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      margin-bottom: 8px;
+    }
+
+    .intro,
+    p,
+    li {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.09);
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .section-label {
+      color: var(--accent-warm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+    }
+
+    .pub-grid,
+    .list-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .pub-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .list-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pub-card,
+    .list-card {
+      padding: 22px;
+      background: rgba(255,255,255,0.74);
+    }
+
+    .pub-meta {
+      color: var(--accent-warm);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .pub-card a,
+    .list-card a,
+    .inline-link {
+      color: var(--accent);
+    }
+
+    .citation-list {
+      display: grid;
+      gap: 14px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .citation-list li {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .citation-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .citation-list strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 0.95rem;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 12px;
+      font-size: 0.94rem;
+    }
+
+    .link-row a {
+      color: var(--accent);
+    }
+
+    .long-list-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .compact-list li {
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .compact-list .link-row {
+      margin-top: 8px;
+    }
+
+    @media (max-width: 860px) {
+      .pub-grid,
+      .list-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">David I. Levine</div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="levine-teaching.html">Teaching</a>
+        <a href="site_assets/Levine-CV-current.pdf">CV</a>
+      </nav>
+    </div>
+
+    <main id="main-content">
+      <section class="hero">
+        <div class="eyebrow">Publications</div>
+        <h1>Research, policy briefs, and public writing.</h1>
+        <p class="intro">
+          This page brings together recent and representative work across public health, development, regulation, labor, and behavior change. The CV remains the full academic record; this page is designed for readers who want a cleaner way to browse the work.
+        </p>
+        <div class="button-row">
+          <a class="button" href="site_assets/Levine-CV-current.pdf">Download CV (PDF)</a>
+          <a class="button" href="index.html#projects">Current projects</a>
+          <a class="button" href="levine-teaching.html">Teaching and materials</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Selected Recent Research</div>
+        <h2>Recent papers and working papers</h2>
+        <div class="pub-grid">
+          <article class="pub-card">
+            <div class="pub-meta">2024</div>
+            <h3>Vaccination as personal public-good provision</h3>
+            <p>With J. Lucas Reddinger and Gary Charness. <em>Journal of Economic Behavior &amp; Organization</em>, 224 (2024): 481-499.</p>
+            <div class="link-row">
+              <a href="https://www.sciencedirect.com/science/article/pii/S0167268124002336">Journal article</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9347278/">Open preprint</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2024</div>
+            <h3>Large Language Models to Support Community Health Workers</h3>
+            <p>Working paper on AI tools that support frontline health delivery.</p>
+            <div class="link-row">
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4784960">Working paper</a>
+              <a href="https://chwcentral.org/resources/large-language-models-to-support-community-health-workers/">Public overview</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2023</div>
+            <h3>Improving Regulatory Effectiveness Through Better Targeting: Evidence from OSHA</h3>
+            <p>With Matthew Johnson and Michael Toffel. <em>American Economic Journal: Applied Economics</em>, 15(4): 30-67.</p>
+            <div class="link-row">
+              <a href="https://www.aeaweb.org/articles/pdf/doi/10.1257/app.20200659">Journal article</a>
+              <a href="https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID4738504_code377927.pdf?abstractid=3443052&amp;mirid=1">Working paper PDF</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2023</div>
+            <h3>The Effects of Fuel-Efficient Cookstoves on Fuel Use, Particulate Matter, and Cooking Practices</h3>
+            <p>With Andrew Simons, Theresa Beltramo, Garrick Blalock, and Stephen Harrell. <em>The Energy Journal</em>, 2023.</p>
+            <div class="link-row">
+              <a href="https://journals.sagepub.com/doi/10.5547/01956574.44.6.tbel">Journal article</a>
+              <a href="https://escholarship.org/uc/item/365778pn">Open version</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2022</div>
+            <h3>Can targeted messages reduce COVID-19 vaccination hesitancy? A randomized trial</h3>
+            <p>With Jonathan Lucas Reddinger and Gary Charness. <em>Preventive Medicine Reports</em>, 29 (2022).</p>
+            <div class="link-row">
+              <a href="https://www.sciencedirect.com/science/article/pii/S2211335522002108">Journal article</a>
+              <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9272666/">Open manuscript</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2021</div>
+            <h3>Cost Effectiveness of Free Distribution of Diarrhea Treatment by Community Health Workers</h3>
+            <p>With Zachary Wagner, John Bosco Asiimwe, and Rushil Zutshi. <em>Health Policy and Planning</em>, 37(1), 2021.</p>
+            <div class="link-row">
+              <a href="https://academic.oup.com/heapol/article/37/1/123/6410341">Journal article</a>
+              <a href="https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/">Briefing paper</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2020</div>
+            <h3>Incentivizing elimination of biomass cooking fuels with a reversible commitment and a spare LPG cylinder</h3>
+            <p>With Stephen Harrell, Ajay Pillarisetti, Sudipto Roy, Sanjay Juvekar, Rutuja Patil, and Kirk R. Smith. <em>Environmental Science &amp; Technology</em>, 2020.</p>
+            <div class="link-row">
+              <a href="https://householdenergy.org/wp-content/uploads/2020/11/acs.est.0c01818.pdf">Open article PDF</a>
+              <a href="https://ccapc.org.in/policy-briefs/2019/8/4/ujjwala-2-series-roy-and-colleagues">Policy brief</a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-meta">2019</div>
+            <h3>The role of price and convenience in underuse of oral rehydration salts to treat child diarrhea</h3>
+            <p>With Zachary Wagner, John Bosco Asiimwe, and William H. Dow. <em>PLOS Medicine</em>, January 24, 2019.</p>
+            <div class="link-row">
+              <a href="https://cega.berkeley.edu/wp-content/uploads/2020/04/The-Role-of-Price-and-Convenience-in-ORS-Use.pdf">Open article PDF</a>
+              <a href="https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/">Briefing paper</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Public Health and Development</div>
+        <h2>Selected articles by topic</h2>
+        <div class="list-grid">
+          <article class="list-card">
+            <h3>Health delivery, water, and hygiene</h3>
+            <ul class="citation-list">
+              <li>
+                <strong>Rapid Prototyping a School-based Health Program in the Developing World</strong>
+                With Kelsey Steffen and William Riggs. <em>Development Engineering</em>, 2 (2017): 68-81.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S2352728516300100">Journal article</a>
+                  <a href="https://hygieneheroes.berkeley.edu/curriculum/articles/development-engineering.pdf">Open article PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Disgust, Shame and Soapy Water: Tests of Novel Interventions to Promote Safe Water and Hygiene</strong>
+                With Raymond P. Guiteras, Stephen P. Luby, Thomas H. Polley, Kaniz Khatun-e-Jannat, and Leanne Unicomb. <em>Journal of the Association of Environmental and Resource Economists</em>, 3(2), 2016.
+                <div class="link-row">
+                  <a href="https://www.journals.uchicago.edu/doi/10.1086/684161">Journal article</a>
+                  <a href="https://www.popcenter.umd.edu/research/working-papers/papers/2014-014a/at_download/file">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong><a href="https://www.sciencedirect.com/science/article/pii/S2352728515300580">The Pursuit of Balance in Sequential Randomized Trials</a></strong>
+                With Raymond P. Guiteras and Thomas H. Polley. <em>Development Engineering</em>, 1 (2016): 12-25.
+              </li>
+              <li>
+                <strong>Nudging to Use: Achieving Safe Water Behaviors in Kenya and Bangladesh</strong>
+                With Jill Luoto, Jeff Albert, and Stephen Luby. <em>Journal of Development Economics</em>, 110 (2014): 13-21.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S0304387814000303">Journal article</a>
+                  <a href="http://authors.elsevier.com/sd/article/S0304387814000303">Author manuscript</a>
+                </div>
+              </li>
+              <li>
+                <strong><a href="https://plos.org/article/info:doi/10.1371/journal.pone.0026132">What Point-of-Use Water Treatment Products do Consumers Use and Value?</a></strong>
+                With Jill Luoto, Nusrat Najnin, Minhaj Mahmud, Jeff Albert, M. Sirajul Islam, Stephen Luby, and Leanne Unicomb. <em>PLoS ONE</em>, 2011.
+              </li>
+            </ul>
+          </article>
+
+          <article class="list-card">
+            <h3>Energy, environment, and adoption</h3>
+            <ul class="citation-list">
+              <li>
+                <strong>The Refill Gap: Clean Cooking Fuel Adoption in Rural India</strong>
+                With Bodie Cabiyo and Isha Ray. <em>Environmental Research Letters</em>, 16(1), 2020.
+                <div class="link-row">
+                  <a href="https://iopscience.iop.org/article/10.1088/1748-9326/abd133">Journal article</a>
+                  <a href="https://isharay.com/wp-content/uploads/2021/01/Cabiyo-etal-ERL2020.pdf">Accepted manuscript</a>
+                </div>
+              </li>
+              <li>
+                <strong>What Impedes Efficient Adoption of Products? Evidence from Randomized Variation in Sales Offers for Improved Cookstoves in Uganda</strong>
+                With Theresa Beltramo, Garrick Blalock, Carolyn Cotterman, and Andrew Simons. <em>Journal of the European Economic Association</em>, 2018.
+                <div class="link-row">
+                  <a href="https://academic.oup.com/jeea/article/16/4/1850/4096407">Journal article</a>
+                  <a href="https://escholarship.org/uc/item/7qk8m53w">Working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong><a href="https://www.sciencedirect.com/science/article/pii/S2214629618302053">Sensor data to measure Hawthorne effects in cookstove evaluation</a></strong>
+                With Andrew Simons, Theresa Beltramo, and Garrick Blalock. <em>Data in Brief</em>, 18 (2018): 1334-1339.
+              </li>
+              <li>
+                <strong><a href="https://www.sciencedirect.com/science/article/pii/S0973082612000208">A rapid assessment randomized-controlled trial of improved cookstoves in rural Ghana</a></strong>
+                With Jason Burwen. <em>Energy for Sustainable Development</em>, 16(3), 2012: 328-338.
+              </li>
+              <li>
+                <strong><a href="https://www.tandfonline.com/doi/full/10.1080/19439342.2013.775177">The Effect of Solar Ovens on Fuel Use, Emissions, and Health</a></strong>
+                With Theresa Beltramo. <em>Journal of Development Effectiveness</em>, 3(2), 2013: 178-207.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Work, Organizations, and Regulation</div>
+        <h2>Selected work on labor markets, management, and safety</h2>
+        <div class="list-grid">
+          <article class="list-card">
+            <h3>Workplace regulation and job quality</h3>
+            <ul class="citation-list">
+              <li>
+                <strong>Randomized Government Safety Inspections Reduce Worker Injuries with No Detectable Job Loss</strong>
+                With Michael W. Toffel and Matthew S. Johnson. <em>Science</em>, 336, May 18, 2012: 907-912.
+                <div class="link-row">
+                  <a href="https://www.science.org/doi/10.1126/science.1215191">Journal article</a>
+                  <a href="https://www.congress.gov/event/112th-congress/house-event/LC3720/text">House testimony</a>
+                </div>
+              </li>
+              <li>
+                <strong>Quality Management and Job Quality: How the ISO 9001 Standard for Quality Management Systems Affects Employees and Employers</strong>
+                With Michael Toffel. <em>Management Science</em>, 56(6), June 2010.
+                <div class="link-row">
+                  <a href="https://pubsonline.informs.org/doi/10.1287/mnsc.1100.1159">Journal article</a>
+                  <a href="https://irle.berkeley.edu/wp-content/uploads/2008/08/Quality-Management-and-Job-Quality.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Intention and Stochastic Outcomes: An Experimental Study</strong>
+                With Gary Charness. <em>Economic Journal</em>, 117, July 2007: 1051-1072.
+                <div class="link-row">
+                  <a href="https://ideas.repec.org/a/ecj/econjl/v117y2007i522p1051-1072.html">Journal record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Charness%20%26%20Levine%20Intentions%20EJ%202007.pdf">Open PDF</a>
+                </div>
+              </li>
+            </ul>
+          </article>
+
+          <article class="list-card">
+            <h3>Labor, organizations, and inequality</h3>
+            <ul class="citation-list">
+              <li>
+                <strong>Customer Discrimination</strong>
+                With Laura Giuliano and Jonathan Leonard. <em>Review of Economics and Statistics</em>, 92(3), 2010: 670-678.
+                <div class="link-row">
+                  <a href="https://academic.oup.com/qje/article-abstract/125/3/1331/1870098">Journal record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Customer%20Discrimination%2C%20REStat.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Economics of International Refugee Law</strong>
+                With Ryan Bubb and Michael Kremer. <em>Journal of Legal Studies</em>, 40(2), June 2011: 367-404.
+                <div class="link-row">
+                  <a href="https://chicagounbound.uchicago.edu/jls/vol40/iss2/4/">Journal version</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/EconRefugee.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>When Is Employee Retaliation Acceptable at Work? Evidence From Quasi-Experiments</strong>
+                With Gary Charness. <em>Industrial Relations</em>, 49(4), October 2010: 499-523.
+                <div class="link-row">
+                  <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1468-232X.2010.00609.x">Journal article</a>
+                  <a href="https://www.escholarship.org/uc/item/7c02b3mv.pdf">Working paper PDF</a>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Policy Briefs and Public Writing</div>
+        <h2>Public-facing pieces</h2>
+        <div class="list-grid">
+          <article class="list-card">
+            <h3>Policy briefs</h3>
+            <ul class="citation-list">
+              <li>
+                <strong><a href="site_assets/sentinel_firewall_policy_brief.pdf">Sentinel Firewall policy brief</a></strong>
+                Lead exposure, pregnancy, infancy, and the case for safer consumer products.
+              </li>
+              <li>
+                <strong><a href="https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/">Increasing Use of ORS and Zinc to Treat Child Diarrhea in Uganda</a></strong>
+                With Zachary Wagner, John Bosco Asiimwe, and William H. Dow. CHW Central, August 2021.
+              </li>
+              <li>
+                <strong><a href="https://ccapc.org.in/policy-briefs/2019/8/4/ujjwala-2-series-roy-and-colleagues">Health Benefits of PMUY: Challenges in Effective Implementation and Possible Solutions</a></strong>
+                With Sudipto Roy, Rutuja Patil, Ajay Pillarisetti, Stephen Harrell, and Sanjay Juvekar. Collaborative Clean Air Policy Centre, August 2019.
+              </li>
+              <li>
+                <strong><a href="https://docs.google.com/document/d/11_tRGbC38CEK3d8SHUiQ39jKcG9mgUnvW3sFuGjvs50/edit?usp=sharing">Scaling Up Handwashing Interventions in Tamil Nadu Schools</a></strong>
+                With Geetha G. and Malathy Duraisamy.
+              </li>
+            </ul>
+          </article>
+
+          <article class="list-card">
+            <h3>Essays, op-eds, and explainers</h3>
+            <ul class="citation-list">
+              <li>
+                <strong><a href="https://www.sfchronicle.com/opinion/openforum/article/exxon-chevron-venezuela-trump-oil-reserves-21282846.php">Why Venezuela's oil is not the cash cow Trump claims it to be</a></strong>
+                <em>San Francisco Chronicle</em>, January 8, 2026.
+              </li>
+              <li>
+                <strong><a href="https://digitaleconomy.stanford.edu/?p=4709">Democratizing Statistics: How AI Can Empower Everyone</a></strong>
+                With David Nguyen and Jose Ramon Enriquez. Stanford Digital Economy Lab, February 2025.
+              </li>
+              <li>
+                <strong><a href="https://www.theregreview.org/2024/02/26/johnson-levine-toffel-making-workplaces-safer-through-machine-learning/">Making Workplaces Safer Through Machine Learning</a></strong>
+                With Matthew S. Johnson and Michael W. Toffel. <em>The Regulatory Review</em>, February 26, 2024.
+              </li>
+              <li>
+                <strong>OSHA Inspection Should be Welcome</strong>
+                With Michael Toffel. <em>The Compass</em>, 14(1), 2014.
+              </li>
+              <li>
+                <strong><a href="https://www.brookings.edu/articles/simple-steps-to-reduce-the-odds-of-a-global-catastrophe/">Simple steps to reduce the odds of a global catastrophe</a></strong>
+                With Warwick J. McKibbin. Brookings, February 19, 2020.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Books and Monographs</div>
+        <h2>Books and longer-form work</h2>
+        <div class="list-grid">
+          <article class="list-card">
+            <h3>Books</h3>
+            <ul class="citation-list">
+              <li>
+                <strong>Global Challenges in Responsible Business</strong>
+                Editor, with C. B. Bhattacharya, Craig Smith, and David Vogel. Cambridge University Press, 2010.
+              </li>
+              <li>
+                <strong>The American Workplace: Skills, Pay, and Employee Involvement</strong>
+                Editor, with Casey Ichniowski, Craig Olson, and George Strauss. Cambridge University Press, 2000.
+              </li>
+              <li>
+                <strong>Working in the 21st Century: Government Policies to Promote Opportunity, Learning and Productivity in the New Economy</strong>
+                M. E. Sharpe, 1998.
+              </li>
+              <li>
+                <strong>Reinventing the Workplace: How Business and Employees Can Both Win</strong>
+                Brookings Institution, 1995.
+              </li>
+            </ul>
+          </article>
+
+          <article class="list-card">
+            <h3>Monographs</h3>
+            <ul class="citation-list">
+              <li>
+                <strong>Carve-outs in Workers' Compensation Programs in California Construction</strong>
+                With Cristian Echeverria, Frank Neuhauser, Richard Reuben, and Jeffrey S. Petersen. Upjohn Institute, 2003.
+              </li>
+              <li>
+                <strong>How New is the "New" Employment Contract?</strong>
+                With Dale Belman, Gary Charness, Erica Groshen, and K. C. O'Shaughnessy. Upjohn Institute, 2002.
+              </li>
+            </ul>
+            <p class="footer-note">The CV includes additional reviews, reports, cases, grants, service, and consulting work.</p>
+          </article>
+        </div>
+      </section>
+
+
+      <section class="section">
+        <div class="section-label">Complete Publication List</div>
+        <h2>Complete publication chronology</h2>
+        <p class="intro">
+          The full HTML list below mirrors the CV and keeps the complete record browsable on the web.
+        </p>
+        <div class="long-list-stack">
+        <article class="list-card">
+          <h3>Books and Monographs</h3>
+          <ul class="citation-list compact-list">
+              <li>Global Challenges in Responsible Business, editor, with CB Bhattacharya, Craig Smith and David Vogel, Cambridge University Press, 2010</li>
+              <li>Carve-outs in Workers’ Compensation Programs in California Construction, with Cristian Echeverria, Frank Neuhauser, Richard Reuben, and Jeffrey S Petersen, Upjohn Institute, Kalamazoo MI, 2003</li>
+              <li>How New is the “New” Employment Contract? with Dale Belman, Gary Charness, Erica Groshen, and KC O’Shaughnessy, Upjohn Institute, Kalamazoo MI, 2002 (Listed as “Noteworthy” by the Princeton Industrial Relations Section)</li>
+              <li>The American Workplace: Skills, Pay, and Employee Involvement, editor, with Casey Ichniowski, Craig Olson, and George Strauss, Cambridge University Press, 2000</li>
+              <li>Working in the 21st Century: Government Policies to Promote Opportunity, Learning and Productivity in the New Economy, ME Sharpe, Armonk NY, 1998</li>
+              <li>Reinventing the Workplace: How Business and Employees Can Both Win, Brookings Institution, Washington DC, 1995</li>
+          </ul>
+        </article>
+        <article class="list-card">
+          <h3>Refereed Articles</h3>
+          <ul class="citation-list compact-list">
+              <li>
+                <strong>Vaccination as personal public-good provision</strong>
+                With J. Lucas Reddinger and Gary Charness. <em>Journal of Economic Behavior &amp; Organization</em>, 224 (2024): 481-499.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S0167268124002336">Journal article</a>
+                  <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9347278/">Open preprint</a>
+                </div>
+              </li>
+              <li>
+                <strong>Evaluating India's Intensified Diarrhea Control Fortnight</strong>
+                With Xinyu Ren. <em>Journal of Global Health Reports</em>, 7 (2023): e2023012.
+                <div class="link-row">
+                  <a href="https://www.joghr.org/article/75428-evaluating-india-s-intensified-diarrhea-control-fortnight-an-analysis-of-the-national-family-health-survey-2015-2016">Journal article</a>
+                  <a href="https://www.joghr.org/article/75428.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Effects of Fuel-Efficient Cookstoves on Fuel Use, Particulate Matter, and Cooking Practices</strong>
+                With Andrew Simons, Theresa Beltramo, Garrick Blalock, and Stephen Harrell. <em>The Energy Journal</em>, 44(6), 2023.
+                <div class="link-row">
+                  <a href="https://journals.sagepub.com/doi/10.5547/01956574.44.6.tbel">Journal article</a>
+                  <a href="https://escholarship.org/content/qt365778pn/qt365778pn.pdf">Open working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>Improving Regulatory Effectiveness Through Better Targeting: Evidence from OSHA</strong>
+                With Matthew Johnson and Michael Toffel. <em>American Economic Journal: Applied Economics</em>, 15(4) (2023): 30-67.
+                <div class="link-row">
+                  <a href="https://www.aeaweb.org/articles/pdf/doi/10.1257/app.20200659">Journal article</a>
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3443052">Working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>Can targeted messages reduce COVID-19 vaccination hesitancy? A randomized trial</strong>
+                With Jonathan Lucas Reddinger and Gary Charness. <em>Preventive Medicine Reports</em>, 29 (2022).
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S2211335522002108">Journal article</a>
+                  <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9272666/">Open manuscript</a>
+                </div>
+              </li>
+              <li>
+                <strong>Optimal Arrangements for Distribution in Developing Markets: Theory and Evidence</strong>
+                With William Fuchs and Brett Green. <em>American Economic Journal: Microeconomics</em>, 14(1), February 2022: 411-450.
+                <div class="link-row">
+                  <a href="https://www.aeaweb.org/articles?id=10.1257%2Fmic.20190085">Journal article</a>
+                  <a href="https://marriner.eccles.utah.edu/wp-content/uploads/2017/10/Distribution_v4.pdf">Open working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>Cost Effectiveness of Free Distribution of Diarrhea Treatment by Community Health Workers</strong>
+                With Zachary Wagner, John Bosco Asiimwe, and Rushil Zutshi. <em>Health Policy and Planning</em>, 37(1), October 2021.
+                <div class="link-row">
+                  <a href="https://academic.oup.com/heapol/article/37/1/123/6410341">Journal article</a>
+                  <a href="https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/">Briefing paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Refill Gap: Clean Cooking Fuel Adoption in Rural India</strong>
+                With Bodie Cabiyo and Isha Ray. <em>Environmental Research Letters</em>, 16(1), 2020.
+                <div class="link-row">
+                  <a href="https://iopscience.iop.org/article/10.1088/1748-9326/abd133">Journal article</a>
+                  <a href="https://isharay.com/wp-content/uploads/2021/01/Cabiyo-etal-ERL2020.pdf">Accepted manuscript</a>
+                </div>
+              </li>
+              <li>
+                <strong>Incentivizing elimination of biomass cooking fuels with a reversible commitment and a spare LPG cylinder</strong>
+                With Stephen Harrell, Ajay Pillarisetti, Sudipto Roy, Sanjay Juvekar, Rutuja Patil, and Kirk R. Smith. <em>Environmental Science &amp; Technology</em>, 2020.
+                <div class="link-row">
+                  <a href="https://doi.org/10.1021/acs.est.0c01818">Journal article</a>
+                  <a href="https://householdenergy.org/wp-content/uploads/2020/11/acs.est.0c01818.pdf">Open article PDF</a>
+                </div>
+              </li>
+              <li>“A Marriage-based Pilot Clean Household Fuel Intervention in India for Improved Pregnancy Outcomes.” With Ajay Pillarisetti, Sudipto Roy, Nadia Diamond-Smith, Makarand Ghorpade, Arun Dhongade, Kalpana Balakrishnan, Sambandam Sankar, Rutuja Patil, Sanjay Juvekar, Kirk R. Smith. BMJ Open 10, 10, Oct 2020. <a href="https://bmjopenbmjcom/content/10/10/e044127full">https://bmjopenbmjcom/content/10/10/e044127full</a></li>
+              <li>
+                <strong>Encouraging fertilizer adoption through risk-free sample purchase</strong>
+                With Annet Adong, James Tinker, Swaibu Mbowa, and Tony Odokonyero. <em>World Development Perspectives</em>, 19 (2020): 100230.
+                <div class="link-row">
+                  <a href="https://linkinghub.elsevier.com/retrieve/pii/S2452292920300497">Journal article</a>
+                  <a href="https://cega.berkeley.edu/wp-content/uploads/2020/04/Encouraging-fertilizer-adoption-in-Uganda.pdf">Open working paper</a>
+                </div>
+              </li>
+              <li>&quot;When financial incentives backfire: evidence from a community health worker experiment in Uganda.&quot; With Zachary Wagner and John Bosco Asiimwe. Journal of Development Economics, 144, May 2020. DOI: <a href="https://doi.org/10.1016/j.jdeveco.2019.102437">https://doi.org/10.1016/j.jdeveco.2019.102437</a></li>
+              <li>&quot;Effectiveness of a community-based water, sanitation, and hygiene (WASH) intervention in reduction of diarrhoea among under-five children: Evidence from a repeated cross-sectional study (2007-2015) in rural Bangladesh.&quot; With Nepal C. Dey, Mahmood Parvez, Mir Raihanul Islam, and Sabuj K. Mistry. International Journal of Hygiene and Environmental Health, August 20, 2019. DOI: <a href="https://doi.org/10.1016/j.ijheh.2019.08.006">https://doi.org/10.1016/j.ijheh.2019.08.006</a></li>
+              <li>&quot;A community-based health education program using drama and song for increasing knowledge and prevention of pesticide exposure from Indoor Residual Spraying in Limpopo, South Africa.&quot; With Brenda Eskenazi, David I. Levine, Stephen Rauch, Muvhulawa Obida, Diana Bahena, Riana Bornman, and Jonathan Chevrier. Malaria Journal, 18, Article 199 (June 2019). <a href="https://malariajournal.biomedcentral.com/articles/10.1186/s12936-019-2828-5">https://malariajournal.biomedcentral.com/articles/10.1186/s12936-019-2828-5</a></li>
+              <li>&quot;Automation as Part of the Solution,&quot; in &quot;The Future of Jobs in an Increasingly Autonomous Economy: A Dialog.&quot; David Choi, ed., Journal of Management Inquiry, 28(3), July 2019, pp. 316-318. DOI: <a href="https://doi.org/10.1177/1056492619827375">https://doi.org/10.1177/1056492619827375</a></li>
+              <li>&quot;Promoting LPG usage during pregnancy: A pilot study in rural Maharashtra, India.&quot; With Ajay Pillarisetti, Makarand Ghorpade, Sathish Madhav, Arun Dhongade, Sudipto Roy, Kalpana Balakrishnan, Sambandam Sankar, Rutuja Patil, Sanjay Juvekar, and Kirk R. Smith. Environment International, 127 (2019): 540-549. DOI: <a href="https://doi.org/10.1016/j.envint.2019.04.017">https://doi.org/10.1016/j.envint.2019.04.017</a></li>
+              <li>&quot;The role of price and convenience in underuse of oral rehydration salts to treat child diarrhea: A cluster randomized trial in Uganda.&quot; With Zachary Wagner, John Bosco Asiimwe, and William H. Dow. PLOS Medicine, January 24, 2019. Open article: <a href="https://cega.berkeley.edu/wp-content/uploads/2020/04/The-Role-of-Price-and-Convenience-in-ORS-Use.pdf">https://cega.berkeley.edu/wp-content/uploads/2020/04/The-Role-of-Price-and-Convenience-in-ORS-Use.pdf</a></li>
+              <li>“Cross-Subsidies for Improved Sanitation in Low Income Settlements: Assessing the Willingness to Pay of Water Utility Customers in Kenyan Cities.”  With Charisma Acey, Joyce Kisiangani, Patrick Ronoh, Caroline Delaire, Evelyn Makena, Guy Norman, Ranjiv Khush, and Rachel Peletz  World Development Vol 115, March 2019, pp 160-177.  <a href="https://authorselseviercom/sd/article/S0305750X18304108">https://authorselseviercom/sd/article/S0305750X18304108</a></li>
+              <li>
+                <strong>What Impedes Efficient Adoption of Products?</strong>
+                With Theresa Beltramo, Garrick Blalock, Carolyn Cotterman, and Andrew Simons. <em>Journal of the European Economic Association</em>, January 2018.
+                <div class="link-row">
+                  <a href="https://academic.oup.com/jeea/article/16/4/1850/4096407">Journal article</a>
+                  <a href="https://escholarship.org/uc/item/7qk8m53w">Working paper</a>
+                </div>
+              </li>
+              <li>&quot;Sensor data to measure Hawthorne effects in cookstove evaluation.&quot; With Andrew Simons, Theresa Beltramo, and Garrick Blalock. Data in Brief, 18 (2018): 1334-1339. <a href="https://www.sciencedirect.com/science/article/pii/S2214629618302053">https://www.sciencedirect.com/science/article/pii/S2214629618302053</a></li>
+              <li>
+                <strong>Rapid Prototyping a School-based Health Program in the Developing World</strong>
+                With Kelsey Steffen and William Riggs. <em>Development Engineering</em>, 2 (2017): 68-81.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S2352728516300100">Journal article</a>
+                  <a href="https://hygieneheroes.berkeley.edu/curriculum/articles/development-engineering.pdf">Open article PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>What is a "meal"? Comparative methods of auditing carbon offset compliance for fuel-efficient cookstoves</strong>
+                With Steve Harrell, Theresa Beltramo, Garrick Blalock, Juliet Kyayesimira, and Andrew Simons. <em>Ecological Economics</em>, 128 (2016): 8-16.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S0921800916303470">Journal article</a>
+                  <a href="https://publications.dyson.cornell.edu/research/researchpdf/wp/2014/Cornell-Dyson-wp1420.pdf">Open working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Disgust Box: A Novel Approach to Illustrate Water Contamination with Feces</strong>
+                With Kaniz Jannat, Mahfuzur Rahman, and Leanne Unicomb. <em>Global Health Promotion</em>, 25(2), 2018: 75-84.
+                <div class="link-row">
+                  <a href="https://doi.org/10.1177/1757975916658638">Journal article</a>
+                  <a href="https://pubmed.ncbi.nlm.nih.gov/27481891/">PubMed overview</a>
+                </div>
+              </li>
+              <li>&quot;Insuring Health or Insuring Wealth? An Experimental Evaluation of Health Insurance in Rural Cambodia.&quot; With Rachel Polimeni and Ian Ramage. Journal of Development Economics, 119, March 2016: 1-15. <a href="https://www.sciencedirect.com/science/article/pii/S0304387815001194">https://www.sciencedirect.com/science/article/pii/S0304387815001194</a></li>
+              <li>“Design Thinking in Development Engineering.” With Martha A Lesniewski and Alice M Agogino, International Journal of Engineering Education, special issue 32, 3(B)), May/June 2016: 1396-1406. [Preprint: <a href="https://pdfssemanticscholarorg/8ca6/c89ac1d26b8015908232baae473670aedd56pdf">https://pdfssemanticscholarorg/8ca6/c89ac1d26b8015908232baae473670aedd56pdf</a>]</li>
+              <li>
+                <strong>Disgust, Shame and Soapy Water: Tests of Novel Interventions to Promote Safe Water and Hygiene</strong>
+                With Raymond P. Guiteras, Stephen P. Luby, Thomas H. Polley, Kaniz Khatun-e-Jannat, and Leanne Unicomb. <em>Journal of the Association of Environmental and Resource Economists</em>, 3(2), May 2016: 321-359.
+                <div class="link-row">
+                  <a href="https://www.journals.uchicago.edu/doi/10.1086/684161">Journal article</a>
+                  <a href="https://www.popcenter.umd.edu/research/working-papers/papers/2014-014a/at_download/file">Working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Pursuit of Balance in Sequential Randomized Trials</strong>
+                With Raymond P. Guiteras and Thomas H. Polley. <em>Development Engineering</em>, 1 (2016): 12-25.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S2352728515300580">Article</a>
+                </div>
+              </li>
+              <li>&quot;The effect of marketing messages and payment over time on willingness to pay for fuel-efficient cookstoves.&quot; With Theresa Beltramo, Garrick Blalock, and Andrew M. Simons. Journal of Economic Behavior &amp; Organization, 118 (2015): 333-345. <a href="https://www.sciencedirect.com/science/article/pii/S0167268115001353">https://www.sciencedirect.com/science/article/pii/S0167268115001353</a></li>
+              <li>“Do Ratings of Firms Converge? Implications for Strategy Research.” With Aaron Chatterji, Rodolphe Durand, and Samuel Touboul  Strategic Management Journal  2015 doi: 101002/smj2407 <a href="http://onlinelibrarywileycom/doi/101002/smj2407/epdf">http://onlinelibrarywileycom/doi/101002/smj2407/epdf</a></li>
+              <li>
+                <strong>Explaining low rates of sustained use of siphon water filter</strong>
+                With Nusrat Najnin and others. <em>Tropical Medicine &amp; International Health</em>, 20(4), April 2015: 471-483.
+                <div class="link-row">
+                  <a href="https://onlinelibrary.wiley.com/doi/10.1111/tmi.12448">Journal article</a>
+                  <a href="https://research.monash.edu/en/publications/explaining-low-rates-of-sustained-use-of-siphon-water-filter-evid/">Article record</a>
+                </div>
+              </li>
+              <li>&quot;Does Peer Use Influence Adoption of Efficient Cookstoves? Evidence from a Randomized Controlled Trial in Uganda.&quot; With Andrew Simons, Theresa Beltramo, and Garrick Blalock. Health Communication, 30 (2015): 55-66. DOI: <a href="https://doi.org/10.1080/10810730.2014.994244">https://doi.org/10.1080/10810730.2014.994244</a></li>
+              <li>“Comparing Methods for Signal Analysis of Temperature Readings from Stove Use Monitors” With Andrew Simons, Theresa Beltramo and Garrick Blalock Biomass and Bioenergy 2014. (<a href="http://authorselseviercom/sd/article/S0961953414003808">http://authorselseviercom/sd/article/S0961953414003808</a>)</li>
+              <li>
+                <strong>Nudging to Use: Achieving Safe Water Behaviors in Kenya and Bangladesh</strong>
+                With Jill Luoto, Jeff Albert, and Stephen Luby. <em>Journal of Development Economics</em>, 110, September 2014: 13-21.
+                <div class="link-row">
+                  <a href="https://www.sciencedirect.com/science/article/pii/S0304387814000303">Journal article</a>
+                  <a href="https://authors.elsevier.com/sd/article/S0304387814000303">Author manuscript</a>
+                </div>
+              </li>
+              <li>&quot;The Effect of Solar Ovens on Fuel Use, Emissions, and Health: Results from a Randomized Controlled Trial.&quot; With Theresa Beltramo. Journal of Development Effectiveness, 3(2), June 2013: 178-207. <a href="https://www.tandfonline.com/doi/full/10.1080/19439342.2013.775177">https://www.tandfonline.com/doi/full/10.1080/19439342.2013.775177</a></li>
+              <li>&quot;A rapid assessment randomized-controlled trial of improved cookstoves in rural Ghana.&quot; With Jason Burwen. Energy for Sustainable Development, 16(3), September 2012: 328-338. <a href="https://www.sciencedirect.com/science/article/pii/S0973082612000208">https://www.sciencedirect.com/science/article/pii/S0973082612000208</a></li>
+              <li>
+                <strong>Randomized Government Safety Inspections Reduce Worker Injuries with No Detectable Job Loss</strong>
+                With Michael W. Toffel and Matthew S. Johnson. <em>Science</em>, 336, May 18, 2012: 907-911.
+                <div class="link-row">
+                  <a href="https://doi.org/10.1126/science.1215191">Journal article</a>
+                  <a href="https://clear.dol.gov/sites/default/files/OSHALevine2012.pdf">Open summary</a>
+                </div>
+              </li>
+              <li>“Learning to Dislike Safe Water Products: Results from a Randomized Controlled Trial of the Effects of Direct and Peer Experience on Willingness to Pay.” With Jill Luoto, Minhaj Mahmud, Jeff Albert, Stephen Luby, Nusrat Najnin, and Leanne Unicomb, Environmental Science &amp; Technology: 46 (11), May 2012: 6244-6251.</li>
+              <li>“Thermostats for Smart Grid: Models, Benchmarks and Insights.” With Yong Liang and Zuo-Jun Shen, Energy Journal  33 (4), 2012.  (SSRN&#x27;s Top Ten download list for: Sustainable Technology eJournal)</li>
+              <li>&quot;What Point-of-Use Water Treatment Products do Consumers Use and Value? Evidence from the Urban Poor in Bangladesh.&quot; With Jill Luoto, Nusrat Najnin, Minhaj Mahmud, Jeff Albert, M. Sirajul Islam, Stephen Luby, and Leanne Unicomb. PLOS ONE, October 20, 2011. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0026132">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0026132</a></li>
+              <li>“The Effect of Industrialization on Children’s Education: The Experience of Mexico.” With Ann Le Brun and Susan Helper, Review of Economics and Institutions, 2, 2, article 1, Spring 2011.</li>
+              <li>
+                <strong>The Economics of International Refugee Law</strong>
+                With Ryan Bubb and Michael Kremer. <em>Journal of Legal Studies</em>, 40(2), June 2011: 367-404.
+                <div class="link-row">
+                  <a href="https://chicagounbound.uchicago.edu/jls/vol40/iss2/4/">Journal article</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/EconRefugee.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>“Do Race, Age, and Gender Differences Affect Manager-Employee Relations? An Analysis of Quits, Dismissals, and Promotions at a Large Retail Firm.” With Laura Giuliano and Jonathan Leonard Journal of Human Resources  46, 1, Winter 2011, 26-52.</li>
+              <li>
+                <strong>End-User Preferences for and Performance of Competing POU Water Treatment Technologies among the Rural Poor of Kenya</strong>
+                With Jeff Albert and Jill Luoto. <em>Environmental Science &amp; Technology</em>, 44(12), 2010: 4426-4432.
+                <div class="link-row">
+                  <a href="https://pubs.acs.org/doi/10.1021/es1000566">Journal article</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Albert_et_al_EST_2010.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>When Is Employee Retaliation Acceptable at Work?</strong>
+                With Gary Charness. <em>Industrial Relations</em>, 49(4), October 2010: 499-523.
+                <div class="link-row">
+                  <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1468-232X.2010.00614.x">Journal article</a>
+                  <a href="https://faculty.econ.ucsb.edu/~charness/papers/sabotage.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Quality Management and Job Quality</strong>
+                With Michael Toffel. <em>Management Science</em>, 56(6), June 2010.
+                <div class="link-row">
+                  <a href="https://pubsonline.informs.org/doi/10.1287/mnsc.1100.1159">Journal article</a>
+                  <a href="https://irle.berkeley.edu/wp-content/uploads/2008/08/Quality-Management-and-Job-Quality.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Customer Discrimination</strong>
+                With Laura Giuliano and Jonathan Leonard. <em>Review of Economics and Statistics</em>, 92(3), August 2010: 670-678.
+                <div class="link-row">
+                  <a href="https://doi.org/10.1162/REST_a_00018">Journal article</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/Customer%20Discrimination%2C%20REStat.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Industrialization, Pollution and Infant Mortality</strong>
+                With Maya Federman. <em>Environment and Development Economics</em>, 15(5), 2010: 557-584.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/eg&dl43.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>“Manager Race and the Race of New Hires.” With Laura Giuliano and Jonathan Leonard, Journal of Labor Economics, 27, 4, 2009: 589-631.</li>
+              <li>
+                <strong>Do Microfinance Programs Help Families Insure Consumption Against Illness?</strong>
+                With Paul Gertler and Enrico Moretti. <em>Health Economics</em>, 18(3), 2009: 257-273.
+                <div class="link-row">
+                  <a href="https://ideas.repec.org/a/wly/hlthec/v18y2009i3p257-273.html">Journal record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Gertler%20Levine%20Moretti%20banks%20insure%20WP.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>How Well Do Social Ratings Actually Measure Corporate Social Responsibility?</strong>
+                With Aaron K. Chatterji and Michael W. Toffel. <em>Journal of Economics &amp; Management Strategy</em>, 18(1), Spring 2009: 125-169.
+                <div class="link-row">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=993094">Working paper record</a>
+                  <a href="https://escholarship.org/content/qt9kq0s218/qt9kq0s218_noSplash_782d87833e624dc2d9261b5ff4382252.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Investment Following a Financial Crisis: Does Foreign Ownership Matter?</strong>
+                With Garrick Blalock and Paul Gertler. <em>Journal of Monetary Economics</em>, 55(3), April 2008: 568-591.
+                <div class="link-row">
+                  <a href="https://blalock.dyson.cornell.edu/wp/blalock_fc_060104.pdf">Working paper PDF</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Investment%20during%20a%20crisis.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>“Are measured school effects just sorting? Causality and correlation in the National Education Longitudinal Survey.” With Gary Painter, Economics of Education Review, 27, 4, August 2008: 460-470.</li>
+              <li>“Fairness and the employment contract: North American regions versus Germany.” With Knut Gerlach, Gesine Stephan, and Olaf Struck, Cambridge Journal of Economics, 32, 3, May 2008: 421-439.</li>
+              <li>
+                <strong>Intention and Stochastic Outcomes: An Experimental Study</strong>
+                With Gary Charness. <em>Economic Journal</em>, 117, July 2007: 1051-1072.
+                <div class="link-row">
+                  <a href="https://ideas.repec.org/a/ecj/econjl/v117y2007i522p1051-1072.html">Journal record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Charness%20%26%20Levine%20Intentions%20EJ%202007.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Growing Importance of Family and Community</strong>
+                With Bhashkar Mazumder. <em>Industrial Relations</em>, 46(1), January 2007: 7-21.
+                <div class="link-row">
+                  <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1468-232X.2007.00456.x">Journal article</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Levine%20%26%20Mazumder%20Growing%20Importance%20of%20Family%20and%20Community.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Growth, Industrialization, and the Intergenerational Correlation of Advantage</strong>
+                With Jon R. Jellema. <em>Industrial Relations</em>, 46(1), January 2007: 130-170.
+                <div class="link-row">
+                  <a href="https://catalog.ihsn.org/citations/29444">Journal record</a>
+                  <a href="https://irle.berkeley.edu/wp-content/uploads/2005/10/Growth-Industrialization-and-the-Intergenerational-Correlation-of-Advantage.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>“Is Social Capital the Capital of the Poor? The Role of Family and Community in Helping Insure Living Standards Against Health Shocks.” With Paul Gertler and Enrico Moretti. CESifo Economic Studies, no. 52, September 2006: 455 – 499.</li>
+              <li>
+                <strong>The Effect of Diversity on Turnover: A Large Case Study</strong>
+                With Jonathan S. Leonard. <em>Industrial and Labor Relations Review</em>, 59(4), July 2006: 547-572.
+                <div class="link-row">
+                  <a href="https://journals.sagepub.com/doi/10.1177/001979390605900402">Journal article</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/Leonard%20%26%20Levine%20Diversity%20%26%20Turnover%20WP.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Does Trade Affect Health?</strong>
+                With Dov Rothman. <em>Journal of Health Economics</em>, 25 (2006): 538-554.
+                <div class="link-row">
+                  <a href="https://doi.org/10.1016/j.jhealeco.2005.10.001">Journal article</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Does%20Trade%20affect%20Health,%20JHE.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Breaking Down The Wall Of Codes: Evaluating Non-Financial Performance Measurement</strong>
+                With Aaron Chatterji. <em>California Management Review</em>, 48(2), Winter 2006: 29-51.
+                <div class="link-row">
+                  <a href="https://escholarship.org/uc/item/9kq0s218">Article record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Chatterji%26%20Levine%20Wall%20of%20Codes%20CMR.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Did Industrialization Destroy Social Capital in Indonesia?</strong>
+                With Paul Gertler and Ted Miguel. <em>Economic Development and Cultural Change</em>, 54(2), Winter 2006: 287-318.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Miguel%20Gertler%26%20Levine%20Did%20Industrialization%20Destroy%20Social%20Capital%20in%20Indonesia%20WP.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Does Social Capital Promote Industrialization?</strong>
+                With Ted Miguel and Paul Gertler. <em>Review of Economics and Statistics</em>, 87(4), November 2005: 754-762.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Miguel,%20Gerlter%20Levine%20Does%20Social%20Capital%20Promote%20Industrialization%20REStat.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Effect of Industrialization on School Enrollment</strong>
+                With Maya Federman. <em>Contributions to Macroeconomics</em>, 5(1), Article 1, 2005.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/The%20Effects%20of%20Industrialization%20on%20School%20Enrollment%20and%20Youth%20Employment%20in%20Indonesia.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>“Size, Skill and Sorting.” With Dale Belman, Labour, 18, 4, Dec 2004: 515-561.</li>
+              <li>
+                <strong>Do Birds of a Feather Shop Together?</strong>
+                With Jonathan Leonard and Aparna Joshi. <em>Journal of Organizational Behavior</em>, 25(6), August 2004: 731-754.
+                <div class="link-row">
+                  <a href="https://pure.psu.edu/en/publications/do-birds-of-a-feather-shop-together-the-effects-on-performance-of/">Journal record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/do%20birds%20of%20a%20feather%20shop%20together.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Daddies, Devotion, and Dollars: How Do They Matter for Youth?</strong>
+                With Gary Painter. <em>American Journal of Economics and Sociology</em>, 63(4), October 2004: 813-850.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Daddies,%20Devotion%20and%20Dollars%20How%20Do%20They%20Matter%20for%20Youth.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Schooling and Parental Death</strong>
+                With Paul Gertler and Minnie Ames. <em>Review of Economics and Statistics</em>, 86(1), February 2004: 211-225.
+                <div class="link-row">
+                  <a href="https://ideas.repec.org/a/tpr/restat/v86y2004i1p211-225.html">Journal record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Schooling_Parental_Death.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Costs of Teenage Out-of-Wedlock Childbearing</strong>
+                With Gary Painter. <em>Review of Economics and Statistics</em>, 85(4), November 2003: 884-900.
+                <div class="link-row">
+                  <a href="https://ideas.repec.org/p/ecm/wc2000/1155.html">Working paper record</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/teenpreg%2042b.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>The Effects of Diversity on Business Performance</strong>
+                With Thomas Kochan and others. <em>Human Resource Management</em>, 42(1), Spring 2003: 3-23.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/The%20Effects%20of%20Diversity%20on%20Business%20Performance.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Are Investments in Daughters Lower When Daughters Move Away?</strong>
+                With Michael Kevane. <em>World Development</em>, 31(6), June 2003.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Are%20Investments%20in%20Daughters%20Lower%20When%20Daughters%20Move%20Away.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>“ ‘Carve-outs’ from the Workers’ Compensation System.” With Jeffrey S Petersen and Frank Neuhauser, The Journal of Policy Analysis and Management 21, 3, Summer 2002: 467-483.</li>
+              <li>
+                <strong>Employee Involvement and Pay at American Auto Suppliers</strong>
+                With Susan Helper and Elliot Bendoly. <em>Journal of Economics &amp; Management Strategy</em>, 11(2), Summer 2002: 329-377.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/Wages%26involvemnet_JEMS.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>
+                <strong>Changes in the Employment Contract</strong>
+                With Gary Charness. <em>Journal of Economic Behavior &amp; Organization</em>, 47(4), April 2002: 391-405.
+                <div class="link-row">
+                  <a href="https://faculty.econ.ucsb.edu/~charness/papers/changes.pdf">Open article PDF</a>
+                  <a href="https://faculty.haas.berkeley.edu/levine/Papers/Charness%20%26%20Levine%20Changes%20in%20Employment%20Contract%20ILRR.pdf">Related working paper</a>
+                </div>
+              </li>
+              <li>
+                <strong>Changes in Managerial Pay Structures 1986-1992</strong>
+                With K.C. O'Shaughnessy and Peter Cappelli. <em>Oxford Economic Papers</em>, 53(3), 2001: 482-507.
+                <div class="link-row">
+                  <a href="https://academic.oup.com/oep/article-pdf/53/3/482/9901842/482.pdf">Journal PDF</a>
+                  <a href="https://www.nber.org/system/files/working_papers/w7730/w7730.pdf">Working paper PDF</a>
+                </div>
+              </li>
+              <li>“Family Structure and Youth Outcomes: Which Correlations are Causal?” With Gary Painter, Summer 2000, Journal of Human Resources, XXXV, 3, pp 524-549.</li>
+              <li>“When are Layoffs Acceptable?  Evidence from a Quasi-Experiment.” With Gary Charness  April 2000, Industrial and Labor Relations Review, 53, 3, pp 381-400.</li>
+              <li>“The NELS Curve: Replicating The Bell Curve with the National Educational Longitudinal Survey.” With Gary Painter, Industrial Relations, 38, 3, July 1999, pp 364-406.</li>
+              <li>“Flexibility versus Efficiency? A Case Study of Model Changeovers in the Toyota Production System,” With Paul Adler and Barbara Goldoftas, Organization Science, 10, 1, January-February 1999, pp 43-68.</li>
+              <li>“Computer Mediated Communication as Employee Voice: A Case Study.” With Elizabeth Bishop, Industrial and Labor Relations Review, 52, 2, January 1999, pp 213-233.</li>
+              <li>“Reinventing Regulation: Letting Employees and Employers Solve their Own Problems,” The California Management Review, 39, 4, September, 1997, pp 98-117.</li>
+              <li>“Institutional Incentives for Employer Training.” With David Finegold, Journal of Education and Work, 10, 2 June, 1997.</li>
+              <li>“Ergonomics, Employee Involvement, and the Toyota Production System: A Case Study of NUMMI’s 1993 Model Introduction.” With Paul S. Adler and Barbara Goldoftas, Industrial and Labor Relations Review, 50, 3, April 1997, pp 416-437.  Reprinted in The Fordism of Ford and Modern Management, Huw Beynon, editor, Elgar, 2005.</li>
+              <li>“What Does it Mean to Be Poor in America.” With Maya Federman, Thesia Garner, Kathleen Short, John Kiely, Duane McGough, and Marilyn McNillen, Monthly Labor Review, May 1996, pp 3-17.</li>
+              <li>“A Quality Policy for America.” With Susan Helper, Contemporary Policy Issues, 13, 2, April 1995, pp 26-37.  [<a href="https://dspace.mit.edu/bitstream/handle/1721.1/1795/Imvp068a.pdf?sequence=2">https://dspace.mit.edu/bitstream/handle/1721.1/1795/Imvp068a.pdf?sequence=2</a></li>
+              <li>“Work Organization, Employment Security, and Macroeconomic Stability.” With Richard Parkin, Journal of Economic Behavior and Organizations, 24, 3, August 1994, pp 251-271.</li>
+              <li>“Fairness, Markets and Ability to Pay: Evidence from Compensation Executives,” American Economic Review, 83, 5, December 1993, pp 1241-1259.</li>
+              <li>“The Effects of Non-Traditional Attitudes on Married Women’s Labor Supply,” Journal of Economic Psychology, 14, 4, December 1993, pp 665-679.</li>
+              <li>“What Do Wages Buy?” Administrative Science Quarterly, 38, 3, September, 1993, pp 462-483  A short version appeared in the Proceedings of the Industrial Relations Research Association, 1993, pp 133-141.</li>
+              <li>“Worth Waiting For?  Delayed Compensation, Training and Turnover in the United States and Japan,” Journal of Labor Economics, 4, 3, September 1993, pp 724-752.</li>
+              <li>“Do Corporate Executives have Rational Expectations?” Journal of Business, 66, 2, April 1993, pp 271-294.</li>
+              <li>“Long-Term Supplier Relations and Product Market Structure.” With Susan Helper, Journal of Law, Economics and Organization, 8, 3, October, 1992, pp 561-581.</li>
+              <li>“Can Wage Increases Pay for Themselves?  Tests with a Production Function,” Economic Journal, 102, 414, September 1992, pp 1102-1115.</li>
+              <li>“Piece Rates, Output Restriction, and Cohesiveness.” Journal of Economic Psychology, 13, 3, September 1992, pp 473-479.</li>
+              <li>“Product Quality and Pay Equity Between Low-Level Employees and Top Management: An Investigation of Distributive Justice Theory.” With Douglas Cowherd, Administrative Science Quarterly, 37, 2, June 1992, pp 302-320.</li>
+              <li>“Public Policy Implications of Imperfections in the Market for Worker Participation,” Economic and Industrial Democracy, 13, 3, May 1992, pp 184-206. <a href="https://journals.sagepub.com/doi/epdf/10.1177/0143831X92132003">https://journals.sagepub.com/doi/epdf/10.1177/0143831X92132003</a></li>
+              <li>“Just Cause Employment Policies in the Presence of Worker Adverse Selection,” Journal of Labor Economics, 9, 3, July 1991, pp 294-305.</li>
+              <li>“Cohesiveness, Productivity, and Wage Dispersion,” Journal of Economic Behavior and Organizations, 15, March 1991, pp 237-255.</li>
+              <li>“Just Cause Employment Policies When Unemployment is a Worker Discipline Device,” American Economic Review, 79, 4, September, 1989, pp 902-905.</li>
+              <li>“Efficiency Wages in Weitzman’s Share Economy,” Industrial Relations, 28, 3, Fall 1989, pp 321-334  A short version appeared in Economics Letters, 23, 1987, pp 245-249.</li>
+          </ul>
+        </article>
+        <article class="list-card">
+          <h3>Other Articles and Book Chapters</h3>
+          <ul class="citation-list compact-list">
+              <li>“Do Multinational Corporations Exploit Their Workers?” With Emma Aisbett, Ann E Harrison, Jason Scorse, and Jed Silver, in Global Goliaths: Multinational Corporations in a Changing Global Economy, edited by James Hines and David Wessel. Brookings, Washington DC, 2021: 259-300.</li>
+              <li>&quot;Hygiene Heroes: A dental health intervention for Indian schools.&quot; With S.R. Samuel and G. Geetha. Journal of Global Oral Health, 3(1), January 2020: 34-35. DOI: <a href="https://doi.org/10.25259/JGOH_15_2020">https://doi.org/10.25259/JGOH_15_2020</a></li>
+              <li>“Toward Universal Health Insurance in Cambodia.” With Virginie Diaz Pedregal, Stéphanie Pamies-Sumner and Ian Ramage, in Rémi Genevey, Rajendra, KPachauri and Laurence Tubiana, eds., Reducing Inequalities, TERI, Delhi, 2013, p 133-137.</li>
+              <li>“The New ‘Managerial Misclassification’ Challenge to Old Wage &amp; Hour Law or What is Managerial Work?” With David Lewin, in Contemporary Issues in Employment Relations, David Lewin, ed, LERA Research Volume, Cornell University Press, 2006: 189-222.</li>
+              <li>“The Effects of New Work Practices on Workers.” With Michael Handel, in America at Work, Edward E Lawler III and James O’Toole, editors, Palgrave Macmillan, New York NY: 73-86.  (An earlier version appeared in Industrial Relations, 43, 1, January 2004: 1-43)</li>
+              <li>“Public Policy Implications,” in The American Workplace: Skills, Pay, and Employee Involvement, edited by Casey Ichniowski and others, Cambridge University Press, 2000, pp 273-282.</li>
+              <li>“The Economics of Works Councils.” With Bruce Kaufman, in Nonunion Forms of Employee Representation: History, Contemporary Practice, and Policy, Kaufman and Daphne Taras, eds, M E Sharpe, Armonk NY, 2000, pp 149-175.</li>
+              <li>“The Quality of Incentives and the Incentives of Quality.” With Katherine Shaw, in The Quality Movement in America: Lessons for Theory and Research, Robert Cole and Richard Scott, eds, Sage, NY, 2000, pp 367-386</li>
+              <li>
+                <strong>A Case Study of the Mortgage Application Process</strong>
+                With Ken Temkin and Diane Levy, in <em>Mortgage Lending Discrimination: A Review of the Evidence</em>, Urban Institute Press, 1999: 137-160.
+                <div class="link-row">
+                  <a href="https://faculty.haas.berkeley.edu/levine/papers/A%20Case%20Study%20of%20the%20Mortgage%20Application%20Process.pdf">Open PDF</a>
+                </div>
+              </li>
+              <li>“Stability and Change at NUMMI.” With Paul S Adler and Barbara Goldoftas, in Robert Boyer, Elsie Charron, Ulrich Jürgens, and Steven Tolliday (eds), Between Imitation and Innovation: Transfer and Hybridization of Production Models in the International Automobile Industry, New York: Oxford University Press, 1998, pp 128-160.</li>
+              <li>“(Attempts at) Replication of The Bell Curve,” editor’s introduction to a symposium, Industrial Relations, July 1999, pp 245-249.</li>
+              <li>“They Should Solve Their Own Problems: Reinventing Workplace Regulation,” in Government Regulation of the Employment Relationship: A Critical Appraisal, Industrial Relations Research Association, Madison WI, 1997.</li>
+              <li>“Team Production,” in The Human Resource Management Handbook, David Lewin, Daniel JB Mitchell, and Mahmood Zaidi, editors, JAI Press, Greenwich CN, 1997 pp 35-61.</li>
+              <li>“What Works at Work: A Critical Review.” With Casey Ichniowski, Thomas Kochan, Craig Olson, and George Strauss, Industrial Relations, vol 35, no 3, Summer, 1996, pp 299-333.  (A version appeared in The American Workplace, Cambridge U Press, 2000, pp 1-37.)</li>
+              <li>“The US Labor Market: ‘Institutions’ ≠ Rigid and ‘Unregulated’ ≠ Market-Clearing,” Proceedings of the Industrial Relations Research Association, 1994.</li>
+              <li>“The Relation between Supplier Participation and Worker Participation.” With Susan Helper, Proceedings of the Industrial Relations Research Association, 1994, pp 12-25.</li>
+              <li>“Demand Variability and Work Organization,” in Democracy and Markets: Participation, Accountability, and Efficiency, Samuel Bowles, Herbert Gintis, and Bo Gufstafsson, eds, Cambridge University Press, 1993, pp 159-175.</li>
+              <li>“Computer Mediated Communication as Employee Voice: A Case Study.” With Elizabeth Bishop, Proceedings of the Conference on NetWORKing, IFIP WG 91, 1993.</li>
+              <li>“Participation, Productivity, and the Firm’s Environment.” With Laura D’Andrea Tyson, in Paying for Productivity, Alan Blinder, ed, Brookings Institution, 1990, pp 183-244.  (Selected for Frontier Issues in Economic Thought series, The Changing Nature of Work, Global Development and Environment Institute, 1999)</li>
+              <li>“Employee Participation and Involvement.” With George Strauss, in Investing in People, Report for the Commission on Workforce Quality and Labor Market Efficiency, Background papers, Vol II, paper 35b, US Department of Labor, September, 1989, pp 1893-1948.</li>
+              <li>Efficiency Wage Theories: Micro- and Macroeconomic Implications and Empirical Tests, PhD Dissertation, Harvard University, Cambridge MA, 1987.</li>
+              <li>Spot and Futures Markets for Natural Gas, Brookhaven National Laboratory Report, 1984.</li>
+          </ul>
+        </article>
+        <article class="list-card">
+          <h3>WORKING PAPERS</h3>
+          <ul class="citation-list compact-list">
+              <li>&quot;Large Language Models to Support Community Health Workers.&quot; 2024. Listed on SSRN&#x27;s Top Ten download list for Health Communication eJournal. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4784960">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4784960</a></li>
+              <li>“Estimating how the COVID-19 crisis affects access to water &amp; sanitation” With Xinyu Ren, Jeff Albert and Ranjiv Khush 2021.</li>
+              <li>&quot;Design for Impact: A Development Engineering Graduate Program at UC Berkeley.&quot; With Alice M. Agogino and Martha A. Lesniewski. Working paper, 2015. <a href="https://best.berkeley.edu/wp-content/uploads/2015/07/DE_for-DevEngJournal.v9.pdf">https://best.berkeley.edu/wp-content/uploads/2015/07/DE_for-DevEngJournal.v9.pdf</a></li>
+              <li>&quot;Mobile Phones, Rent-to-Own Payments &amp; Water Filters: Evidence from Kenya.&quot; With Jill Luoto. RAND Working Paper Series WR-1039, March 19, 2014. <a href="https://www.rand.org/pubs/working_papers/WR1039.html">https://www.rand.org/pubs/working_papers/WR1039.html</a></li>
+              <li>&quot;Credit Constraints, Discounting and Investment in Health: Evidence from Micropayments for Clean Water in Dhaka.&quot; With Raymond Guiteras, Thomas Polley, and Brian Quistorff. Working paper, February 2014. <a href="https://sites.google.com/view/rpguiter/research/dhaka-water-wtp">https://sites.google.com/view/rpguiter/research/dhaka-water-wtp</a></li>
+              <li>&quot;Prices Matter: Comparing Two Tests of Adverse Selection in Health Insurance.&quot; With Rachel Polimeni. IRLE Working Paper 135-12, December 2012. <a href="https://irle.berkeley.edu/wp-content/uploads/2012/12/Prices-Matter.pdf">https://irle.berkeley.edu/wp-content/uploads/2012/12/Prices-Matter.pdf</a></li>
+          </ul>
+        </article>
+        <article class="list-card">
+          <h3>Patent</h3>
+          <ul class="citation-list compact-list">
+              <li>“Smart Thermostat Design for the Smart Grid,” Patent Application 61/732,911, filed November 8, 2012. (Provisional patent)</li>
+          </ul>
+        </article>
+        <article class="list-card">
+          <h3>Book Reviews and Non-Technical Publications</h3>
+          <ul class="citation-list compact-list">
+              <li>&quot;Why Venezuela&#x27;s oil is not the cash cow Trump claims it to be.&quot; San Francisco Chronicle, January 8, 2026. <a href="https://www.sfchronicle.com/opinion/openforum/article/exxon-chevron-venezuela-trump-oil-reserves-21282846.php">https://www.sfchronicle.com/opinion/openforum/article/exxon-chevron-venezuela-trump-oil-reserves-21282846.php</a></li>
+              <li>&quot;Democratizing Statistics: How AI Can Empower Everyone (without Causing Disasters).&quot; With David Nguyen and Jose Ramon Enriquez. Stanford Digital Economy Lab, February 2025. Article: <a href="https://digitaleconomy.stanford.edu/?p=4709">https://digitaleconomy.stanford.edu/?p=4709</a>  Video: <a href="https://www.youtube.com/watch?v=HN4BQe-tc-c">https://www.youtube.com/watch?v=HN4BQe-tc-c</a></li>
+              <li>“Cracking the Code to Creating Real World Health Change,” Great Lakes Institute of Management – Chennai, May 2025. <a href="https://www.youtube.com/watch?v=mWzozJhm3Ww">https://www.youtube.com/watch?v=mWzozJhm3Ww</a></li>
+              <li>“Making Workplaces Safer Through Machine Learning.” With Matthew S. Johnson and Michael W. Toffel. The Regulatory Review. Feb. 26, 2024. <a href="https://www.theregreview.org/2024/02/26/johnson-levine-toffel-making-workplaces-safer-through-machine-learning/">https://www.theregreview.org/2024/02/26/johnson-levine-toffel-making-workplaces-safer-through-machine-learning/</a></li>
+              <li>&quot;Increasing Use of ORS and Zinc to Treat Child Diarrhea in Uganda.&quot; With Zachary Wagner, John Bosco Asiimwe, and William H. Dow. CHW Central briefing paper, August 2021. <a href="https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/">https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/</a></li>
+              <li>&quot;Why You Should be Glad the FDA has Resumed Johnson &amp; Johnson Vaccines.&quot; With Bruce Wydick. April 30, 2021. <a href="https://www.acrosstwoworlds.net/why-you-should-be-glad-the-fda-has-resumed-johnson-johnson-vaccines/">https://www.acrosstwoworlds.net/why-you-should-be-glad-the-fda-has-resumed-johnson-johnson-vaccines/</a></li>
+              <li>“Our first vaccines can save more lives.” UC Berkeley blog, January 11, 2021. <a href="https://blogs.berkeley.edu/2021/01/11/17407/">https://blogs.berkeley.edu/2021/01/11/17407/</a></li>
+              <li>“Monitoring vaccine safety is a crucial first step.” UC Berkeley blog, January 11, 2021. <a href="https://blogs.berkeley.edu/2021/01/12/monitoring-vaccine-safety-is-a-crucial-first-step/">https://blogs.berkeley.edu/2021/01/12/monitoring-vaccine-safety-is-a-crucial-first-step/</a></li>
+              <li>“How gift certificates can help (a little bit) to support local businesses.” UC Berkeley Blog,  March 23, 2020. <a href="https://blogs.berkeley.edu/2020/03/23/how-gift-certificates-can-help-a-little-bit-to-support-local-businesses/">https://blogs.berkeley.edu/2020/03/23/how-gift-certificates-can-help-a-little-bit-to-support-local-businesses/</a></li>
+              <li>“Why Workplace Hygiene Should Be More Than Just Hand-Washing,” Q&amp;A with Jill Cowan, New York Times California Today, March 11, 2020.  <a href="https://www.nytimes.com/2020/03/11/us/coronavirus-covid-19-hygiene.html">https://www.nytimes.com/2020/03/11/us/coronavirus-covid-19-hygiene.html</a></li>
+              <li>&quot;Simple steps to reduce the odds of a global catastrophe.&quot; With Warwick J. McKibbin. Brookings, February 19, 2020. <a href="https://www.brookings.edu/articles/simple-steps-to-reduce-the-odds-of-a-global-catastrophe/">https://www.brookings.edu/articles/simple-steps-to-reduce-the-odds-of-a-global-catastrophe/</a></li>
+              <li>“Health Benefits of PMUY: Challenges in Effective Implementation and Possible Solutions.” With Sudipto Roy, Rutuja Patil, Ajay Pillarisetti, Stephen Harrell, and Sanjay Juvekar, Collaborative Clean Air Policy Centre, August 6, 2019.  <a href="https://ccapc.org.in/policy-briefs/2019/8/4/ujjwala-2-series-roy-and-colleagues">https://ccapc.org.in/policy-briefs/2019/8/4/ujjwala-2-series-roy-and-colleagues</a></li>
+              <li>&quot;A cheaper, easier, more effective way to combat one of Uganda&#x27;s deadliest illnesses.&quot; With John Bosco Asiimwe and Zachary Wagner. Center for Effective Global Action blog, June 26, 2019. <a href="https://medium.com/center-for-effective-global-action/a-cheaper-easier-more-effective-way-to-combat-one-of-ugandas-deadliest-illnesses-503c5cdf0eb3">https://medium.com/center-for-effective-global-action/a-cheaper-easier-more-effective-way-to-combat-one-of-ugandas-deadliest-illnesses-503c5cdf0eb3</a></li>
+              <li>“Check Cholera Threat,” Daily Monitor [Uganda], with John Bosco Asiimwe and Zachary Wagner, Feb 12, 2019.</li>
+              <li>“OSHA Inspection Should be Welcome.” With Michael Toffel The Compass, vol 14, no 1 ASSE, p 4, 2014.</li>
+              <li>Book review of Paying Out-of-Pocket for Drugs, Diagnostics and Medical Services: A Study of Households in Three Indian States, Journal of Economic Literature June 2014: 549-550. [<a href="https://www.aeaweb.org/articles?id=10.1257/jel.52.2.535">https://www.aeaweb.org/articles?id=10.1257/jel.52.2.535</a>]</li>
+              <li>A Guide to Optimizing Behavior Change in Stove Programs, with Theresa Beltramo, Stephen Harrell, and Johanna Young Impact Carbon, 2013. <a href="http://tractionprojectorg/content/implementation-research-behavior-change-interventions-improve-acquisition-and-correct-use">http://tractionprojectorg/content/implementation-research-behavior-change-interventions-improve-acquisition-and-correct-use</a></li>
+              <li>Implementation Research on Behavior Change Interventions to Improve the Acquisition and Correct Use of Improved Cookstoves, with Theresa Beltramo, Stephen Harrell, Caitlyn Toombs and Johanna Young Final report to USAID, Impact Carbon, 2013. <a href="http://tractionprojectorg/content/guide-optimizing-behavior-change-stove-programs">http://tractionprojectorg/content/guide-optimizing-behavior-change-stove-programs</a></li>
+              <li>“Improving sales offers for improved stoves,” CEGA blog, January 24, 2013.</li>
+              <li>&quot;Renting Inefficiency.&quot; With Lucas Davis. Energy Economics Exchange, November 26, 2012. <a href="https://energyathaas.wordpress.com/2012/11/26/renting-inefficiency/">https://energyathaas.wordpress.com/2012/11/26/renting-inefficiency/</a></li>
+              <li>&quot;Exorcising phantom power,&quot; Los Angeles Times, November 26, 2012.</li>
+              <li>&quot;Randomized Government Safety Inspections Reduce Worker Injuries with No Detectable Job Loss,&quot; testimony before the House of Representatives Subcommittee on Workforce Protections, Hearing on &quot;Promoting Safe Workplaces Through Voluntary Protection Programs,&quot; June 28, 2012. <a href="https://www.congress.gov/event/112th-congress/house-event/LC3720/text">https://www.congress.gov/event/112th-congress/house-event/LC3720/text</a></li>
+              <li>Evaluation of SKY health insurance in Cambodia</li>
+              <li>“Results of the Second Health Centre Survey.” With Rachel Gardner, Ian Ramage and Karen Zhang, 2011.</li>
+              <li>“Who Buys SKY Health Insurance?.” With Rachel Polimeni, Ian Ramage, and Patrick Searles, 2011.</li>
+              <li>“Village Monograph Summary Report.” With Ian Ramage, Kim Hour Ramage, Eisel Mazard, Mark Kavenagh, and Gabriel Pictet, 2010.</li>
+              <li>&quot;Health Insurance for the Rural Poor: Evidence from Cambodia,&quot; in Innovations in Insuring the Poor, Ruth Vargas Hill and Maximo Torero, eds., International Food Policy Research Institute, Focus 17, Brief 10, December 2009.</li>
+              <li>“Results of the First Health Centre Survey.” with Rachel Gardner, Gabriel Pictet, Rachel Polimeni and Ian Ramage, 2009.</li>
+              <li>BASIS Brief no 2007-05 Insuring Health: Testing the Effectiveness of Micro-health Insurance to Promote Economic Wellbeing for the Poor, with Nhong Hema and Ian Ramage July 2007.</li>
+              <li>“Improving Sales Offers for Improved Stoves,” Stanford Social Innovation Review blog, June 15, 2011. A longer version is on my website: “New Sales Offers for Improved Cookstoves,” Briefing paper, with CIRCODU.</li>
+              <li>&quot;Do SMS Text Messaging and SMS Community Forums Improve Outcomes of Adult and Adolescent Literacy Programs? Evidence from the Jokko Initiative in Senegal.&quot; With Theresa Beltramo. Final report to TOSTAN and UNICEF, September 2010.</li>
+              <li>“Quality Management and Job Quality: How the ISO 9001 Standard for Quality Management Systems Affects Employees and Employers,” (Executive Summary) with Michael Toffel, Quality Progress, American Society for Quality, March 2010.</li>
+              <li>“A New Era,” in Obama Reflections from Election Day to Presidency: Social Justice Thought Leaders Speak Out, Kirwan Institute, Ohio State University, 2009: 7.</li>
+              <li>&quot;A Note on the Impact of Local Rainfall on Rice Output in Indonesian Districts.&quot; With Dean Yang, 2006.</li>
+              <li>&quot;Perspectives on Corporate Governance: Executive Compensation.&quot; Case in Point concept paper, Caseplace.org, May 2007.</li>
+              <li>“Social Security Panel.” With Reuel Schiller, Peter Edelman and Thomas Davidoff, Race and Poverty Law Journal, 3 (2), Spring 2006: 185-202.</li>
+              <li>“Our opportunity to end poverty -- or fail to even try,” San Francisco Chronicle, Sunday, May 21, 2006: E3.</li>
+              <li>“The Wheels of Washington:  Groupthink and Iraq,” San Francisco Chronicle, Thursday, February 5, 2004, p A23. [sfgatecom/articlecgi?file=/chronicle/archive/2004/02/05/EDGV34OCEP1DTL]</li>
+              <li>Book review of The New Relationship: Human Capital in the American Corporation, Journal of Economic Literature, 40 (2), June 2002:  547-549.</li>
+              <li>Book review of Manufacturing Advantage, Industrial and Labor Relations Review, 55 (1), October 2001: 175-176.</li>
+              <li>“Gilding the Ghetto,” Across the Board, Oct 1999, 36 (9): 10.</li>
+              <li>“Knowledge Transfer: Managerial Practices Underlying One Piece of the Learning Organization.” With April Gilbert, COHRE briefing paper,  [<a href="http://socratesberkeleyedu/~iir/cohre/">http://socratesberkeleyedu/~iir/cohre/</a> knowledgehtml], 1998.</li>
+              <li>&quot;Editorial: Overt Discrimination by Multinational Firms.&quot; Industrial Relations, 37(2), April 1998: 121-125.</li>
+              <li>“Brave New Work” interview with Josh Clark, Mother Jones, July/Aug 1997.</li>
+              <li>“The OECD’s Role in Measuring Human Capital,” background paper for the OECD, DEELSA/CERI//HCI (96) 6, 1996.</li>
+              <li>“A Deficit of Clear Thinking.” With Brad DeLong, CalBusiness, Fall 1996, p 6.</li>
+              <li>“Dole Tax Cuts Ignore Deficits, Investment, Education, Future.” With Brad DeLong, San Jose Mercury News, August 26, 1996, p 5E.</li>
+              <li>“Model Changes at NUMMI (A) and (B).” With Paul S Adler and Barbara Goldoftas, teaching cases, USC, 1995.</li>
+              <li>“Government Should Take Lead in Quantifying Workplace Skills,” San Jose Mercury News, December 25, 1995, p 3F.</li>
+              <li>“Not Such a Capital Idea.” With Brad DeLong, San Francisco Chronicle, December 5, 1995, p A23.</li>
+              <li>“Welfare Reform that Makes Poor Kids Poorer Will Never Pay Off.” With Brad DeLong, Los Angeles Times, Sunday Forum, October 15, 1995, p D2.</li>
+              <li>Book review of Darcy D’Art, Economic Democracy and Financial Participation, Journal of Economic Behavior and Organization, 1993.</li>
+              <li>“The Quality Movement,” Dollars and Sense, September 1992, pp 20-22  A short version appeared in Cal Business, June 1992.</li>
+              <li>“Management Education is an Oxymoron,” Cal Business Weekly, May 1992.</li>
+              <li>Book review of Tom Korver, The Fictitious Commodity: A Study of the US Labor Market 1880-1940 for, Journal of Labor History, 32, 4, Fall 1991, pp 624-625.</li>
+              <li>“Participation, Productivity, and the Firm’s Environment,” California Management Review, Summer 1990, pp 86-100.</li>
+              <li>“Japan’s Other Export,” Dollars and Sense, September 1990, pp 18-21.</li>
+              <li>“No Voice For Workers.” With Laura D’Andrea Tyson, Dollars and Sense, no 152, December 1989, pp 20-22  Reprinted in Microeconomics 91/92, Don Cole, ed, Dushkin Publishing Group, Guilford CN, 1990; Real World Macro, seventh and eighth editions, and Real World Micro, third edition Economic Affairs Bureau, Somerville MA, 1990, 1991, and 1992.</li>
+              <li>“Sweden: Full Employment in a Free Market Economy,” Labor Center Reporter, no 251, November 1988.</li>
+              <li>“Capitalism, Swedish Style,” Dollars and Sense, no 140, October 1988, pp 20-22  Reprinted in Real World Macro, sixth edition, Economic Affairs Bureau, Somerville MA, 1989.</li>
+              <li>“Why Comparable Worth Won’t Upset the Marketplace,” San Francisco Chronicle, March 7, 1988, p C6.</li>
+          </ul>
+        </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

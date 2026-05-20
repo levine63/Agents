@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David I. Levine</title>
+  <style>
+    :root {
+      --bg: #f5efe2;
+      --surface: rgba(255, 252, 246, 0.9);
+      --surface-strong: #fffdf8;
+      --ink: #1f2c2a;
+      --muted: #586764;
+      --accent: #0f766e;
+      --accent-soft: #d8efe9;
+      --accent-warm: #c65d2e;
+      --border: rgba(31, 44, 42, 0.12);
+      --shadow: 0 18px 40px rgba(49, 52, 38, 0.12);
+      --radius: 22px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(198, 93, 46, 0.16), transparent 22%),
+        linear-gradient(180deg, #fbf7ef 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      z-index: 20;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 26px 0 72px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, 0.78);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 14px;
+      z-index: 5;
+    }
+
+    .brand {
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: flex-end;
+      font-size: 0.97rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-main,
+    .hero-side,
+    .section,
+    .project-card,
+    .pub-card,
+    .feature-card,
+    .footer-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 44px 42px 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -80px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(15, 118, 110, 0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 0.96;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: 1.12rem;
+      color: var(--muted);
+      max-width: 40rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-copy {
+      font-size: 1.18rem;
+      max-width: 42rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 0.96rem;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .button {
+      background: var(--accent);
+      color: #f8fffd;
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border);
+      color: var(--ink);
+    }
+
+    .button:hover,
+    .button-secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-side {
+      padding: 26px;
+      display: grid;
+      gap: 16px;
+      background:
+        linear-gradient(180deg, rgba(15, 118, 110, 0.06), rgba(255, 252, 246, 0.95)),
+        var(--surface-strong);
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 5 / 6.7;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #e8e0d0;
+    }
+
+    .hero-side h2 {
+      font-size: 1rem;
+      margin: 0 0 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-side p,
+    .hero-side li {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .mini-list strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .section {
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      color: var(--accent-warm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+      line-height: 1.08;
+      margin: 0;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+
+    .section-intro {
+      max-width: 44rem;
+      color: var(--muted);
+      font-size: 1.03rem;
+      margin: 10px 0 0;
+    }
+
+    .grid-3,
+    .grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-card,
+    .pub-card,
+    .feature-card,
+    .footer-card {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      background: #eff6f5;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .project-card h3,
+    .pub-card h3,
+    .feature-card h3,
+    .footer-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.38rem;
+      line-height: 1.18;
+    }
+
+    .project-card p,
+    .pub-card p,
+    .feature-card p,
+    .footer-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.99rem;
+    }
+
+    .project-card ul,
+    .pub-card ul,
+    .feature-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.09);
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      color: var(--accent);
+      font-size: 0.93rem;
+    }
+
+    .muted-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section-rail {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .pub-meta {
+      color: var(--accent-warm);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+    }
+
+    .contact-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .muted-link {
+      color: var(--accent);
+    }
+
+    .kicker {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .section-rail,
+      .footer-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        border-radius: 28px;
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(var(--max), calc(100% - 22px));
+      }
+
+      .hero-main,
+      .hero-side,
+      .section,
+      .project-card,
+      .pub-card,
+      .feature-card,
+      .footer-card {
+        padding: 20px;
+      }
+
+      h1 {
+        line-height: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">David I. Levine</div>
+      <nav class="nav">
+        <a href="#projects">Current Projects</a>
+        <a href="#recent">Recent Projects</a>
+        <a href="levine-publications.html">Publications</a>
+        <a href="levine-teaching.html">Teaching & Materials</a>
+        <a href="site_assets/Levine-CV-current.pdf">CV</a>
+      </nav>
+    </div>
+
+    <main id="main-content">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow">Economics, Public Health, Work, and Practical Change</div>
+        <h1>David I. Levine</h1>
+        <div class="hero-title">
+          Eugene E. and Catherine M. Trefethen Professor of Business Administration<br>
+          Haas School of Business, University of California, Berkeley
+        </div>
+        <div class="hero-copy">
+          I study how better evidence, better implementation, and better tools can improve lives.
+          My work connects economics with public health, organizations, and policy, with a recent
+          emphasis on scalable interventions that help people stay healthier, safer, and better informed.
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="#projects">Explore Current Projects</a>
+          <a class="button-secondary" href="levine-publications.html">Publication List</a>
+          <a class="button-secondary" href="site_assets/Levine-CV-current.pdf">CV (PDF)</a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <img class="hero-photo" src="site_assets/portrait-2023.jpg" alt="David I. Levine portrait">
+        <div>
+          <h2>Current Areas</h2>
+          <p>I apply economic and behavioral insights to improve health at scale.</p>
+        </div>
+        <ul class="mini-list">
+          <li>
+            <strong>Current projects</strong>
+            <a class="muted-link" href="#lead-exposure">Reducing lead exposure from consumer-product hazards during pregnancy and early childhood</a><br>
+            <a class="muted-link" href="#ors">Improving access to cost-effective diarrhea treatment with ORS and zinc</a><br>
+            <a class="muted-link" href="#chw-navigator">Using AI to build practical tools for community health workers</a>
+          </li>
+          <li>
+            <strong>Recent projects</strong>
+            <a class="muted-link" href="#handwashing">Improving school handwashing</a><br>
+            <a class="muted-link" href="#cookstoves">Reducing reliance on smoky, dangerous cookstoves</a><br>
+            <a class="muted-link" href="#osha">Improving the effectiveness of workplace safety inspections</a>
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Current Projects</div>
+          <h2>Current work on lead exposure, treatment access, and frontline care.</h2>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="project-card" id="lead-exposure">
+          <div class="tag">Lead Exposure</div>
+          <h3>Sentinel Firewall</h3>
+          <p>
+            Lead exposure costs the world trillions of dollars each year and causes more than one million deaths. I study whether distributing safer products to pregnant women and infants can be a cost-effective way to reduce exposure during the most vulnerable stages of life.
+          </p>
+          <ul>
+            <li><a class="muted-link" href="site_assets/manuscript_bmj_ready_research_cheers.pdf">Working paper on safer products for pregnant women and infants</a></li>
+          </ul>
+          <div class="card-links">
+            <a class="text-link" href="site_assets/sentinel_firewall_policy_brief.pdf">Policy brief (PDF)</a>
+          </div>
+        </article>
+
+        <article class="project-card" id="ors">
+          <div class="tag">Health Delivery</div>
+          <h3>ORS</h3>
+          <p>
+            Diarrhea remains one of the leading causes of death among young children, even though ORS and zinc are inexpensive and effective treatments. We tested whether community health workers in Uganda could increase use by making treatment free, convenient, and available before a child falls ill.
+          </p>
+          <ul>
+            <li><a class="muted-link" href="https://cega.berkeley.edu/wp-content/uploads/2020/04/The-Role-of-Price-and-Convenience-in-ORS-Use.pdf">The role of price and convenience in use of oral rehydration salts to treat child diarrhea in Uganda</a></li>
+          </ul>
+          <div class="card-links">
+            <a class="text-link" href="https://chwcentral.org/policy-brief-increasing-use-of-ors-and-zinc-to-treat-child-diarrhea-in-uganda/">Briefing paper</a>
+          </div>
+        </article>
+
+        <article class="project-card" id="chw-navigator">
+          <div class="tag">AI + Frontline Care</div>
+          <h3>CHW Navigator</h3>
+          <p>
+            Community health workers are often the first line of care, but they rarely have consistent decision support. CHW Navigator explores whether AI-assisted tools can help them give clearer advice, follow up better, and improve care for families.
+          </p>
+          <ul>
+            <li><a class="muted-link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4784960">Large Language Models to Support Community Health Workers</a></li>
+          </ul>
+          <div class="card-links">
+            <a class="text-link" href="https://chwcentral.org/resources/large-language-models-to-support-community-health-workers/">Public overview</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="recent">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Recent Projects</div>
+          <h2>Recent interventions in schools, workplaces, and household energy.</h2>
+          <p class="section-intro">
+            These projects focus on practical changes in behavior, regulation, and technology that can reduce illness and injury.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="feature-card" id="handwashing">
+          <div class="tag">Behavior Change</div>
+          <h3>Handwashing</h3>
+          <p>
+            Handwashing with soap is one of the most effective ways to reduce diarrheal disease and respiratory infections, two of the largest causes of child illness and death. We tested a school-based intervention in southern India and found that combining low-cost soapy bottles with routines dramatically increased handwashing.
+          </p>
+          <ul>
+            <li><a class="muted-link" href="https://hygieneheroes.berkeley.edu/curriculum/articles/development-engineering.pdf">Rapid Prototyping a School-based Health Program in the Developing World</a></li>
+          </ul>
+          <div class="card-links">
+            <a class="text-link" href="https://hygieneheroes.berkeley.edu/handwashing.html">Hygiene Heroes handwashing page</a>
+          </div>
+        </article>
+
+        <article class="feature-card" id="osha">
+          <div class="tag">Workplace Safety</div>
+          <h3>OSHA</h3>
+          <p>
+            OSHA and other regulators inspect only a small fraction of the workplaces they oversee. Our work shows that better targeting, including machine learning, can help inspections prevent far more injuries without increasing the inspection budget.
+          </p>
+          <ul>
+            <li><a class="muted-link" href="https://irle.berkeley.edu/wp-content/uploads/2019/09/Improving-Regulatory-Effectiveness-through-Better-Targeting-1.pdf">Improving Regulatory Effectiveness Through Better Targeting: Evidence from OSHA</a></li>
+          </ul>
+          <div class="card-links">
+            <a class="text-link" href="https://www.theregreview.org/2024/02/26/johnson-levine-toffel-making-workplaces-safer-through-machine-learning/">Policy essay</a>
+          </div>
+        </article>
+
+        <article class="feature-card" id="cookstoves">
+          <div class="tag">Energy and Health</div>
+          <h3>Cookstoves</h3>
+          <p>
+            Smoke from biomass cooking causes a large burden of illness, especially for women and children. Our work tests how behavior change, logistics, and product design can help households move from smoky chulhas to cleaner fuels and sustain near-exclusive LPG use.
+          </p>
+          <ul>
+            <li><a class="muted-link" href="https://householdenergy.org/wp-content/uploads/2020/11/acs.est.0c01818.pdf">Incentivizing Elimination of Biomass Cooking Fuels with a Reversible Commitment and a Spare LPG Cylinder</a></li>
+          </ul>
+          <div class="card-links">
+            <a class="text-link" href="https://ccapc.org.in/policy-briefs/2019/8/4/ujjwala-2-series-roy-and-colleagues">Policy brief</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="publications">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Selected Publications and Writing</div>
+          <h2>Selected publications and policy writing.</h2>
+          <p class="section-intro">
+            Recent papers, policy essays, and public writing.
+          </p>
+        </div>
+        <a class="button-secondary" href="levine-publications.html">Full publication list</a>
+      </div>
+
+      <div class="section-rail">
+        <div class="pub-list">
+          <article class="pub-card">
+            <div class="pub-meta">2024</div>
+            <h3><a href="https://www.sciencedirect.com/science/article/pii/S0167268124002336">Vaccination as personal public-good provision</a></h3>
+            <p>
+              With J. Lucas Reddinger and Gary Charness. <em>Journal of Economic Behavior &amp; Organization.</em>
+            </p>
+          </article>
+
+          <article class="pub-card">
+            <div class="pub-meta">2024</div>
+            <h3><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4784960">Large Language Models to Support Community Health Workers</a></h3>
+            <p>
+              Working paper on how AI tools may support frontline health delivery.
+            </p>
+          </article>
+
+          <article class="pub-card">
+            <div class="pub-meta">2024</div>
+            <h3><a href="https://irle.berkeley.edu/wp-content/uploads/2019/09/Improving-Regulatory-Effectiveness-through-Better-Targeting-1.pdf">Improving Regulatory Effectiveness Through Better Targeting: Evidence from OSHA</a></h3>
+            <p>
+              With Matthew Johnson and Michael Toffel. <em>American Economic Journal: Applied Economics.</em>
+            </p>
+          </article>
+        </div>
+
+        <div class="pub-list">
+          <article class="pub-card">
+            <div class="pub-meta">Policy Writing</div>
+            <h3><a href="https://www.theregreview.org/2024/02/26/johnson-levine-toffel-making-workplaces-safer-through-machine-learning/">Making Workplaces Safer Through Machine Learning</a></h3>
+            <p>
+              With Matthew S. Johnson and Michael W. Toffel. <em>The Regulatory Review</em>, February 26, 2024.
+            </p>
+          </article>
+
+          <article class="pub-card">
+            <div class="pub-meta">2025</div>
+            <h3><a href="https://digitaleconomy.stanford.edu/?p=4709">Democratizing Statistics: How AI Can Empower Everyone</a></h3>
+            <p>
+              With David Nguyen and Jose Ramon Enriquez. Stanford Digital Economy Lab.
+            </p>
+          </article>
+
+          <article class="pub-card">
+            <div class="pub-meta">2026</div>
+            <h3><a href="https://www.sfchronicle.com/opinion/openforum/article/exxon-chevron-venezuela-trump-oil-reserves-21282846.php">Why Venezuela's oil is not the cash cow Trump claims it to be</a></h3>
+            <p>
+              <em>San Francisco Chronicle</em>, January 8, 2026.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="materials">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Teaching and Materials</div>
+          <h2>Teaching and educational materials.</h2>
+          <p class="section-intro">
+            Courses, health curricula, and other materials developed for students, teachers, and families.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <article class="footer-card">
+          <h3>Teaching</h3>
+          <p>
+            Courses in macroeconomics, industrial relations, business strategies for emerging markets, development-oriented innovation, films about work, and research methods.
+          </p>
+          <div class="contact-line">
+            <a class="muted-link" href="https://faculty.haas.berkeley.edu/levine/macro/">Macroeconomics</a>
+            <a class="muted-link" href="https://faculty.haas.berkeley.edu/levine/ba154/homepage.html">Industrial Relations</a>
+            <a class="muted-link" href="https://faculty.haas.berkeley.edu/levine/ba257/syllabus257%202004.doc">Emerging Markets</a>
+            <a class="muted-link" href="https://faculty.haas.berkeley.edu/levine/ba24/">Films about Work</a>
+            <a class="muted-link" href="https://faculty.haas.berkeley.edu/levine/methods/">Research Methods</a>
+            <a class="muted-link" href="levine-teaching.html">Teaching archive</a>
+          </div>
+        </article>
+
+        <article class="footer-card">
+          <h3>Educational Materials</h3>
+          <p>
+            Hygiene Heroes and related public-health materials for schools, teachers, and families.
+          </p>
+          <div class="contact-line">
+            <a class="muted-link" href="https://hygieneheroes.berkeley.edu/">Hygiene Heroes</a>
+            <a class="muted-link" href="https://hygieneheroes.berkeley.edu/curriculum.html">Curriculum</a>
+            <a class="muted-link" href="https://hygieneheroes.berkeley.edu/handwashing.html">Handwashing materials</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="footer-grid">
+        <article class="footer-card">
+          <div class="section-label">About / CV</div>
+          <h2 style="margin-bottom: 12px;">About David I. Levine</h2>
+          <p>
+            David I. Levine is the Eugene E. and Catherine M. Trefethen Professor of Business Administration
+            at the Haas School of Business, University of California, Berkeley. His work spans economics,
+            public health, labor and workplace policy, development, and practical interventions that improve outcomes at scale.
+          </p>
+          <div class="contact-line">
+            <span>levine@berkeley.edu</span>
+            <span>Haas School of Business</span>
+            <span>UC Berkeley</span>
+            <a class="muted-link" href="site_assets/Levine-CV-current.pdf">CV</a>
+            <a class="muted-link" href="https://faculty.haas.berkeley.edu/levine/shortbio.htm">Short bio</a>
+          </div>
+        </article>
+
+        <article class="footer-card">
+          <div class="kicker">Archive Links</div>
+          <h3>More publications, projects, and teaching</h3>
+          <p>
+            Publications, teaching materials, and current contact information in one place.
+          </p>
+          <div class="contact-line">
+            <a class="muted-link" href="levine-publications.html">Publication list</a>
+            <a class="muted-link" href="levine-teaching.html">Teaching archive</a>
+            <a class="muted-link" href="https://hygieneheroes.berkeley.edu/">Educational materials</a>
+            <a class="muted-link" href="site_assets/Levine-CV-current.pdf">CV</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    </main>
+  </div>
+</body>
+</html>
