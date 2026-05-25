@@ -1,37 +1,65 @@
 /**
- * Google Drive submissions watcher with OpenAI review support.
+ * Project: research-quality-standards
+ * File: automation/apps_script/google_drive_submissions_watcher.gs
+ * Author: Codex
+ * Created: 2026-05-13
+ * Last updated: 2026-05-16
  *
  * Purpose:
- * Poll a Drive submissions folder, detect new files, and log them to a
- * Google Sheet. Supported artifacts are reviewed automatically and the
- * resulting review is written into a per-submission Google Doc.
+ * Poll a Google Drive submissions folder, detect new files, log them to a
+ * tracking Sheet, and generate per-submission review output Docs using OpenAI.
  *
- * Supported review paths:
- * - Native Google Docs
- * - Native Google Sheets
- * - Word .docx converted to Google Docs through the Advanced Drive service
- * - Excel .xlsx converted to Google Sheets through the Advanced Drive service
- * - PDF files sent directly to the OpenAI Responses API as file input
+ * Inputs:
+ * - Script Properties:
+ *   - SUBMISSIONS_FOLDER_ID
+ *   - TRACKING_SHEET_ID
+ *   - OPENAI_API_KEY
+ *   - TRACKING_SHEET_NAME=Intake Log
+ *   - OPENAI_MODEL=gpt-5-mini
+ *   - INCLUDE_SUBFOLDERS=true
+ *   - EXCLUDED_FOLDER_NAMES=99_Admin
+ *   - REVIEW_OUTPUT_FOLDER_NAME=Review Outputs
+ *   - CONVERTED_SOURCE_FOLDER_NAME=Converted Review Sources
+ *   - KEEP_CONVERTED_SOURCES=true
+ *   - EXCLUDED_FILE_IDS=comma,separated,file,ids
+ *   - STANDARDS_BASE_URL=https://raw.githubusercontent.com/<owner>/<repo>/<branch>
+ *   - STANDARDS_CACHE_MINUTES=20
+ * - Drive submissions in supported formats:
+ *   - native Google Docs
+ *   - native Google Sheets
+ *   - Word .docx
+ *   - Excel .xlsx
+ *   - PDF
  *
- * Required Script Properties:
- * - SUBMISSIONS_FOLDER_ID
- * - TRACKING_SHEET_ID
- * - OPENAI_API_KEY
+ * Outputs / side effects:
+ * - Reads from the configured submissions folder and optional subfolders.
+ * - Creates or updates rows in the tracking Sheet.
+ * - Creates review-output Google Docs under the admin output folder.
+ * - Converts .docx and .xlsx files into temporary Google-native review sources.
+ * - Sends review requests to the OpenAI Responses API.
+ * - Optionally fetches review standards from a GitHub raw-content URL.
+ * - Optionally trashes converted temporary review-source files after review.
  *
- * Recommended Script Properties:
- * - TRACKING_SHEET_NAME=Intake Log
- * - OPENAI_MODEL=gpt-5-mini
- * - INCLUDE_SUBFOLDERS=true
- * - EXCLUDED_FOLDER_NAMES=99_Admin
- * - REVIEW_OUTPUT_FOLDER_NAME=Review Outputs
- * - CONVERTED_SOURCE_FOLDER_NAME=Converted Review Sources
- * - KEEP_CONVERTED_SOURCES=true
- * - EXCLUDED_FILE_IDS=comma,separated,file,ids
- * - STANDARDS_BASE_URL=https://raw.githubusercontent.com/<owner>/<repo>/<branch>
- * - STANDARDS_CACHE_MINUTES=20
+ * Assumptions:
+ * - The Drive folder structure follows the submissions workflow conventions.
+ * - The Apps Script project has permission to read/write the target Drive and Sheet.
+ * - OpenAI API access is available through the configured key.
+ * - Folder-based genre detection is helpful but imperfect.
  *
- * Requirements:
- * - Enable the Advanced Drive service in the Apps Script project.
+ * Environment / dependencies:
+ * - Google Apps Script, V8 runtime.
+ * - Advanced Drive service enabled in the Apps Script project.
+ * - External services: Google Drive, Google Docs, Google Sheets, OpenAI Responses API.
+ *
+ * How to run:
+ * - Configure Script Properties.
+ * - Add a time-based Apps Script trigger for scanSubmissionFolders().
+ * - For deployment from local source, run clasp from the repo root.
+ *
+ * Notes:
+ * - Long documents and spreadsheets are compressed into structured review inputs.
+ * - PDFs are sent directly to the Responses API as file input.
+ * - Side effects are intentional and should stay aligned with this header.
  */
 
 var LOG_COLUMNS_ = [

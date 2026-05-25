@@ -97,7 +97,7 @@ If GitHub is unavailable, the script falls back to embedded standards text so re
 From the repository root:
 
 ```powershell
-Set-Location "C:\Users\levine\Dropbox\PC (2)\Documents\GitHub\Agents\research-quality-standards"
+Set-Location "C:\Users\levine\Dropbox\Codex\GitHub\Agents\research-quality-standards"
 clasp push
 clasp open-script
 ```

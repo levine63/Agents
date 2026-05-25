@@ -243,10 +243,26 @@
       list-style: none;
     }
 
+    .mini-list > li {
+      display: grid;
+      gap: 8px;
+    }
+
     .mini-list strong {
       color: var(--ink);
       display: block;
       margin-bottom: 2px;
+    }
+
+    .topic-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .topic-list a {
+      color: var(--accent);
     }
 
     .section {
@@ -467,8 +483,7 @@
     <div class="topbar">
       <div class="brand">David I. Levine</div>
       <nav class="nav">
-        <a href="#projects">Current Projects</a>
-        <a href="#recent">Recent Projects</a>
+        <a href="index.html">Home</a>
         <a href="levine-publications.html">Publications</a>
         <a href="levine-teaching.html">Teaching & Materials</a>
         <a href="site_assets/Levine-CV-current.pdf">CV</a>
@@ -492,7 +507,7 @@
         <div class="hero-actions">
           <a class="button" href="#projects">Explore Current Projects</a>
           <a class="button-secondary" href="levine-publications.html">Publication List</a>
-          <a class="button-secondary" href="site_assets/Levine-CV-current.pdf">CV (PDF)</a>
+          <a class="button-secondary" href="levine-teaching.html">Teaching & Materials</a>
         </div>
       </div>
 
@@ -505,15 +520,19 @@
         <ul class="mini-list">
           <li>
             <strong>Current projects</strong>
-            <a class="muted-link" href="#lead-exposure">Reducing lead exposure from consumer-product hazards during pregnancy and early childhood</a><br>
-            <a class="muted-link" href="#ors">Improving access to cost-effective diarrhea treatment with ORS and zinc</a><br>
-            <a class="muted-link" href="#chw-navigator">Using AI to build practical tools for community health workers</a>
+            <ul class="topic-list">
+              <li><a href="#lead-exposure">Reducing lead exposure from consumer-product hazards during pregnancy and early childhood</a></li>
+              <li><a href="#ors">Improving access to cost-effective diarrhea treatment with ORS and zinc</a></li>
+              <li><a href="#chw-navigator">Using AI to build practical tools for community health workers</a></li>
+            </ul>
           </li>
           <li>
             <strong>Recent projects</strong>
-            <a class="muted-link" href="#handwashing">Improving school handwashing</a><br>
-            <a class="muted-link" href="#cookstoves">Reducing reliance on smoky, dangerous cookstoves</a><br>
-            <a class="muted-link" href="#osha">Improving the effectiveness of workplace safety inspections</a>
+            <ul class="topic-list">
+              <li><a href="#handwashing">Improving school handwashing</a></li>
+              <li><a href="#cookstoves">Reducing reliance on smoky, dangerous cookstoves</a></li>
+              <li><a href="#osha">Improving the effectiveness of workplace safety inspections</a></li>
+            </ul>
           </li>
         </ul>
       </aside>
