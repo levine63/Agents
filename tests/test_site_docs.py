@@ -60,6 +60,47 @@ class SiteDocsTests(unittest.TestCase):
         )
         self.assertEqual(html.count('class="card-summary"'), 4)
 
+    def test_global_text_links_are_underlined(self) -> None:
+        for name in ("index.html", "levine-publications.html", "levine-teaching.html"):
+            with self.subTest(page=name):
+                html = read_doc(name)
+                self.assertRegex(
+                    html,
+                    r"a\s*\{\s*color:\s*inherit;\s*text-decoration:\s*underline;",
+                )
+
+    def test_small_labels_use_full_contrast_text(self) -> None:
+        for name in ("index.html", "levine-publications.html", "levine-teaching.html"):
+            with self.subTest(page=name):
+                html = read_doc(name)
+                self.assertRegex(
+                    html,
+                    r"\.section-label\s*\{\s*color:\s*var\(--ink\);",
+                )
+
+        index_html = read_doc("index.html")
+        publications_html = read_doc("levine-publications.html")
+
+        self.assertRegex(
+            index_html,
+            r"\.pub-meta\s*\{\s*color:\s*var\(--ink\);",
+        )
+        self.assertRegex(
+            publications_html,
+            r"\.pub-meta\s*\{\s*color:\s*var\(--ink\);",
+        )
+
+    def test_emerging_markets_links_use_local_docx_copy(self) -> None:
+        expected_href = 'href="site_assets/syllabus257-2004.docx"'
+
+        for name in ("index.html", "levine-teaching.html"):
+            with self.subTest(page=name):
+                html = read_doc(name)
+                self.assertIn(expected_href, html)
+                self.assertNotIn("syllabus257%202004.doc", html)
+
+        self.assertTrue((DOCS_DIR / "site_assets" / "syllabus257-2004.docx").exists())
+
 
 if __name__ == "__main__":
     unittest.main()
