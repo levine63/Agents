@@ -57,6 +57,7 @@ Example:
 
 ## Start Here
 
+- [Grant proposal review prompt](reviewer_prompts/grant_review.md) (pilot; standalone grant standards and templates remain planned)
 - `standards/INDEX.md`
 - `templates/INDEX.md`
 - `reviewer/review_contract.md`
@@ -88,3 +89,4 @@ If you are asking:
 ```bash
 python ./scripts/validation/verify.py
 ```
+

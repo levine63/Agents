@@ -63,6 +63,8 @@ For day-to-day use, treat the artifact matrix below as the canonical lookup tabl
 | `literature_review` | `standards/genres/literature_review/` | planned |
 | `meeting_notes` | `standards/genres/meeting_notes/` | planned |
 
+A [grant proposal review prompt](../reviewer_prompts/grant_review.md) is available for pilot use. The standalone grant-proposal standard and grant templates remain planned; the prompt uses the supplied funder-specific requirements and evidence.
+
 ## Format standards
 
 | Format | Path | Source status |
@@ -104,3 +106,4 @@ Planned:
 - `canonical_variable_dictionary.csv`
 - `missing_value_codes.csv`
 - `journal_targets.csv`
+

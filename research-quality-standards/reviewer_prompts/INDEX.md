@@ -9,6 +9,7 @@
 | `statistical_results_review` | `reviewer_prompts/statistical_results_review.md` | integrated |
 | `interview_review` | `reviewer_prompts/interview_review.md` | integrated |
 | `manuscript_review` | `reviewer_prompts/manuscript_review.md` | integrated |
+| `grant_review` | `reviewer_prompts/grant_review.md` | integrated (pilot) |
 
 ## Planned prompts
 
@@ -18,4 +19,4 @@
 | `weekly_goal_review` | `reviewer_prompts/weekly_goal_review.md` | integrated |
 | `weekly_report_review` | `reviewer_prompts/weekly_report_review.md` | integrated |
 | `replication_review` | `reviewer_prompts/replication_review.md` | planned |
-| `grant_review` | `reviewer_prompts/grant_review.md` | planned |
+
